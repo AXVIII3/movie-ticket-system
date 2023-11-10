@@ -1,35 +1,42 @@
 package gui;
 
+import java.util.ArrayList;
+import javax.swing.JFrame;
 
-/**
- * Write a description of class Frame here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class Frame
+public class Frame extends JFrame
 {
-    // instance variables - replace the example below with your own
-    private int x;
+    private final ArrayList<Panel> panels = new ArrayList<>(0);
 
-    /**
-     * Constructor for objects of class Frame
-     */
-    public Frame()
-    {
-        // initialise instance variables
-        x = 0;
-    }
+	public Frame()
+	{
+		super();
+	}
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
-    }
+	public void addNewPanel(Panel panel)
+	{
+		panels.ensureCapacity(panels.size() + 1);
+		panels.add(panel);
+	}
+
+	public void openPanel(String _name)
+	{
+		for (Panel panel : panels)
+		{
+			System.out.println(panel.name + " " + panel.name.equals(_name));
+			if (panel.name.equals(_name))
+			{
+				add(panel);
+				revalidate();
+				repaint();
+				panel.revalidate();
+				panel.repaint();
+			}
+			else
+			{
+				if (!(panel.getParent() == null)) remove(panel);
+				revalidate();
+				repaint();
+			}
+		}
+	}
 }

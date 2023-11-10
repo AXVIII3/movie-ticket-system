@@ -1,35 +1,35 @@
 package gui;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import javax.swing.JButton;
 
-/**
- * Write a description of class Button here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class Button
+public class Button extends JButton
 {
-    // instance variables - replace the example below with your own
-    private int x;
+    private Color pressedBackgroundColor;
 
-    /**
-     * Constructor for objects of class Button
-     */
-    public Button()
+	public Button(String text)
+	{
+		super(text);
+		super.setFocusPainted(false);
+	    super.setFocusable(false);
+	    super.setRolloverEnabled(false);
+        super.setContentAreaFilled(false);
+	}
+
+    @Override
+    protected void paintComponent(Graphics g)
     {
-        // initialise instance variables
-        x = 0;
+        if (getModel().isPressed()) g.setColor(pressedBackgroundColor);
+        else g.setColor(getBackground());
+
+        g.fillRect(0, 0, getWidth(), getHeight());
+        super.paintComponent(g);
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
-    }
+    @Override
+    public void setContentAreaFilled(boolean b)  {}
+
+    public Color getPressedBackgroundColor() { return pressedBackgroundColor; }
+    public void setPressedBackgroundColor(Color pressedBackgroundColor) { this.pressedBackgroundColor = pressedBackgroundColor; }
 }

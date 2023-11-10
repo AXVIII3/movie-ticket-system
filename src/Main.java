@@ -1,33 +1,39 @@
+import java.util.Scanner;
 
-/**
- * Write a description of class Main here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 public class Main
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Main
-     */
-    public Main()
+    public static void main (String[] args)
     {
-        // initialise instance variables
-        x = 0;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("MENU:-");
+        System.out.println("1) Start Console App");
+        System.out.println("2) Start GUI App");
+        System.out.println("3) Edit data");
+        System.out.println("4) Exit");
+        System.out.print("Choice (1/2/3/4): ");
+
+        switch (scanner.nextByte())
+        {
+            case 1: System.out.println("\nConsole App Here!");
+                    break;
+            case 2: InitializeGUI();
+                    System.out.println("\nGUI App Started! Logging here.");
+                    break;
+            case 3: System.out.println("\nEditing Data!");
+                    break;
+            case 4: break;
+            default: System.out.println("\nInvalid Choice! Retry.\n");
+                     main(args);
+        }
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    private static void InitializeGUI ()
     {
-        // put your code here
-        return x + y;
+        Panels.InitializeFrame();
+        Panels.MainScreen();
+        Panels.MovieSelectScreen();
+
+        Panels.GetFrame().openPanel("Main");
     }
 }

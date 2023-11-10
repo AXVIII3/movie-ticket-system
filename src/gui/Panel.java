@@ -1,35 +1,78 @@
 package gui;
 
+import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GradientPaint;
 
-/**
- * Write a description of class Panel here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class Panel
+import javax.swing.JPanel;
+
+public class Panel extends JPanel
 {
-    // instance variables - replace the example below with your own
-    private int x;
+    public String name;
 
-    /**
-     * Constructor for objects of class Panel
-     */
-    public Panel()
+	private Color color1 = Color.white;
+	private Color color2 = Color.white;
+	private int gradientAngle;
+
+	public Panel(String name)
+	{
+		super(new BorderLayout());
+		this.name = name;
+	}
+
+	public void setGradient(Color _color1, Color _color2, int _gradientAngle)
+	{
+		color1 = _color1;
+		color2 = _color2;
+		gradientAngle = _gradientAngle;
+	}
+
+	@Override
+    public void setBackground(Color color)
     {
-        // initialise instance variables
-        x = 0;
+    	color1 = color;
+    	color2 = color;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+	@Override
+    public void paintComponent(Graphics g)
     {
-        // put your code here
-        return x + y;
+        super.paintComponent(g);
+
+        Graphics2D g2d = (Graphics2D) g;
+        int w = getWidth();
+        int h = getHeight();
+
+        int[] points = getGradientPoints(w, h);
+        GradientPaint gp = new GradientPaint(points[0], points[1], color1, points[2], points[3], color2);
+
+        g2d.setPaint(gp);
+        g2d.fillRect(0, 0, w, h);
+    }
+
+    private int[] getGradientPoints(double w, double h)
+    {
+    	int[] points = {0, (int) h, 0, 0};
+    	double angle = Math.toRadians(gradientAngle);
+    	double diagonalAngle = Math.atan(h / w);
+
+    	if (angle >= 0 && angle < diagonalAngle)
+    	{
+    		double _h = h - (Math.tan(angle) * w);
+
+    		points[2] = (int) w;
+    		points[3] = (int) Math.min(Math.max(0, _h), h);
+    	}
+    	else if (angle >= diagonalAngle && (2 * angle) <= Math.PI)
+    	{
+    		double _w = Math.tan(0.5 * Math.PI - angle) * h;
+
+    		points[2] = (int) Math.min(Math.max(0, _w), w);
+        }
+
+
+        return points;
     }
 }
