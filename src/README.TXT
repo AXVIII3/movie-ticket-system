@@ -1,12 +1,6 @@
-------------------------------------------------------------------------
-This is the project README file. Here, you should describe your project.
-Tell the reader (someone who does not know anything about this project)
-all they need to know. The comments should usually include at least:
-------------------------------------------------------------------------
-
-PROJECT TITLE:
-PURPOSE OF PROJECT:
-VERSION or DATE:
-HOW TO START THIS PROJECT:
-AUTHORS:
-USER INSTRUCTIONS:
+PROJECT TITLE: Movie Ticket System
+PURPOSE OF PROJECT: School Project (JSwing app mimicking the working of a movie ticket booking software)
+VERSION or DATE: 24.11.2023
+HOW TO START THIS PROJECT: If using IDE, start Main.java. If using command line perform ```javac Main.java; java Main;```
+AUTHORS: AXVIII3
+USER INSTRUCTIONS: Starting project opens console, choose between console mode or GUI mode and let things happen!
