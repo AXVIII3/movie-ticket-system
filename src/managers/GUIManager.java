@@ -1,6 +1,9 @@
+package managers;
+
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -14,30 +17,37 @@ import gui.Button;
 import gui.Frame;
 import gui.Panel;
 
-public class Panels
+public class GUIManager
 {
     private static Frame frame;
 
-    public static void InitializeFrame()
+    public static void Start()
+    {
+        CreateFrame();
+
+        CreateMainScreen();
+        CreateMovieSelectScreen();
+
+        frame.openPanel("Main");
+    }
+
+    private static void CreateFrame()
     {
         frame = new Frame();
 
         frame.setVisible(true);
-		frame.setSize(1093, 614);
+        Dimension screenSize = Toolkit.getDefaultToolkit ().getScreenSize();
+		frame.setSize(screenSize.width - 10, screenSize.height - 10);
 		frame.setExtendedState(Frame.MAXIMIZED_BOTH);
+        frame.setResizable(false);
 		frame.setTitle("Movie Ticket System ~ P.B.A.S.");
 		frame.setDefaultCloseOperation(Frame.EXIT_ON_CLOSE);
 
-		ImageIcon icon = new ImageIcon("assets/Logo.png");
+		ImageIcon icon = new ImageIcon("src/assets/Logo.png");
 		frame.setIconImage(icon.getImage());
     }
 
-    public static Frame GetFrame()
-    {
-        return frame;
-    }
-
-    public static void MainScreen()
+    private static void CreateMainScreen()
     {
         Panel panel = new Panel("Main");
     	GridBagLayout layout = new GridBagLayout();
@@ -96,7 +106,7 @@ public class Panels
         frame.addNewPanel(panel);
     }
 
-    public static void MovieSelectScreen()
+    private static void CreateMovieSelectScreen()
     {
         Panel panel = new Panel("MovieSelect");
         GridBagLayout layout = new GridBagLayout();

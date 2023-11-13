@@ -27,9 +27,8 @@ public class Button extends JButton
         super.paintComponent(g);
     }
 
-    @Override
-    public void setContentAreaFilled(boolean b)  {}
+//    @Override
+//    public void setContentAreaFilled(boolean b)  {}
 
-    public Color getPressedBackgroundColor() { return pressedBackgroundColor; }
     public void setPressedBackgroundColor(Color pressedBackgroundColor) { this.pressedBackgroundColor = pressedBackgroundColor; }
 }
