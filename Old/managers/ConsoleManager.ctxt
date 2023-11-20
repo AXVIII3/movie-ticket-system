@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=ConsoleManager
+comment1.params=
+comment1.target=void\ Start()
+comment2.params=
+comment2.target=void\ SelectMovieMessage()
+comment3.params=
+comment3.target=void\ ConfigureBookingDate()
+comment4.params=dateIndex
+comment4.target=void\ ConfigureNumberOfSeats(int)
+comment5.params=numberOfSeats\ dateIndex
+comment5.target=void\ ChooseSeats(int,\ int)
+comment6.params=seats\ cost\ dateIndex
+comment6.target=void\ FinalScreen(int[],\ int[],\ int)
+numComments=7

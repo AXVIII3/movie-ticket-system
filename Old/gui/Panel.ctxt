@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Panel
+comment1.params=name
+comment1.target=Panel(java.lang.String)
+comment2.params=_color1\ _color2\ _gradientAngle
+comment2.target=void\ setGradient(java.awt.Color,\ java.awt.Color,\ int)
+comment3.params=color
+comment3.target=void\ setBackground(java.awt.Color)
+comment4.params=g
+comment4.target=void\ paintComponent(java.awt.Graphics)
+comment5.params=w\ h
+comment5.target=int[]\ getGradientPoints(double,\ double)
+numComments=6
