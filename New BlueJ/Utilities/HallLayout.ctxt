@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=HallLayout
+comment1.params=
+comment1.target=int\ TotalSeats()
+comment2.params=movie
+comment2.target=int[][]\ GetFrontArrangement(Movie)
+comment3.params=movie
+comment3.target=int[][]\ GetNormalArrangement(Movie)
+comment4.params=movie
+comment4.target=int[][]\ GetPremiumArrangement(Movie)
+numComments=5

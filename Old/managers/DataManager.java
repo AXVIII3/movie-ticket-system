@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class DataManager
 {
     // FILE PATHS
-    protected static final String movieNamesPath = "src/data/MovieNames.txt";
-    protected static final String seatsLeftPath = "src/data/seats/";
+    protected static final String movieNamesPath = "data/MovieNames.txt";
+    protected static final String seatsLeftPath = "data/seats/";
 
     public static void ResetData ()
     {

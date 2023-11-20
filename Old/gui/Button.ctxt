@@ -1,9 +1,11 @@
 #BlueJ class context
 comment0.target=Button
-comment1.params=text
-comment1.target=Button(java.lang.String)
-comment2.params=g
-comment2.target=void\ paintComponent(java.awt.Graphics)
-comment3.params=pressedBackgroundColor
-comment3.target=void\ setPressedBackgroundColor(java.awt.Color)
-numComments=4
+comment1.params=
+comment1.target=Button()
+comment2.params=text
+comment2.target=Button(java.lang.String)
+comment3.params=g
+comment3.target=void\ paintComponent(java.awt.Graphics)
+comment4.params=pressedBackgroundColor
+comment4.target=void\ setPressedBackgroundColor(java.awt.Color)
+numComments=5

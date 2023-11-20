@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=BookingManager
+comment1.params=
+comment1.target=void\ Initialize()
+comment2.params=movie\ seats
+comment2.target=void\ BookSeats(Utilities.Movie,\ int[])
+comment3.params=movie
+comment3.target=java.util.ArrayList\ GetBookedSeats(Utilities.Movie)
+numComments=4

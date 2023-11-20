@@ -421,7 +421,7 @@ public class GUICreator
         Button proceedButton = new Button("Book");
         Button returnButton = new Button("Go Back");
 
-        ArrayList<int> seats;
+        ArrayList<Integer> seats;
 
         panel.setLayout(layout);
         panel.setBorder(panelBorder);

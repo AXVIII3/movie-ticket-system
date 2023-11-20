@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Movie
+comment1.params=numberOfSeats
+comment1.target=int\ CalculateCost(int)
+comment2.params=details
+comment2.target=Movie(java.lang.String[])
+comment3.params=minutes
+comment3.target=int[]\ minutesToHours(int)
+comment4.params=time
+comment4.target=java.lang.String\ formatTime(int[])
+comment5.params=date
+comment5.target=java.lang.String\ formatDate(java.lang.String)
+numComments=6

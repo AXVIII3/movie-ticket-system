@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=ScrollPane
+comment1.params=component\ verticalScrollbarState\ horizontalScrollbarState
+comment1.target=ScrollPane(java.awt.Component,\ int,\ int)
+comment2.params=
+comment2.target=void\ configureScrollBarColors()
+numComments=3
