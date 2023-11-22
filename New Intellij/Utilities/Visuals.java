@@ -18,6 +18,7 @@ public class Visuals
             Fonts.SUBHEADING_FONT = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.BOLD, 25f);
             Fonts.NORMAL_FONT = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.BOLD, 18f);
             Fonts.SMALL_FONT = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.BOLD, 14f);
+            Fonts.SMALLER_FONT = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.BOLD, 12f);
         }
         catch (Exception e)
         {
@@ -33,11 +34,10 @@ public class Visuals
 
         public static final Color DIALOG_BACKGROUND = new Color(0x14110A);
 
+
         public static final Color TEXT_NORMAL = new Color(0xD3AE00);
         public static final Color TEXT_NORMAL_DARKER = new Color(0xC2A000);
         public static final Color TEXT_DARK = new Color(0x131313);
-
-
 
         public static final Color INTERACTABLE_NORMAL = new Color(0x14110A);
         public static final Color INTERACTABLE_DARKER = new Color(0x131009);
@@ -62,6 +62,7 @@ public class Visuals
 
         public static Font NORMAL_FONT;
         public static Font SMALL_FONT;
+        public static Font SMALLER_FONT;
     }
 
     public static class Borders
@@ -71,12 +72,7 @@ public class Visuals
         public static final Border INTERACTABLE_BORDER = BorderFactory.createLineBorder(Colors.BORDERS, 2);
         public static final Border INTERACTABLE_DIABLED_BORDER =
                 BorderFactory.createLineBorder(Colors.INTERACTABLE_DISABLED, 2);
-
-        public static final Border SEAT_BUTTON_BORDER =
-                BorderFactory.createLineBorder(Colors.BORDERS, 1);
-        public static final Border SEAT_BUTTON_DISABLED_BORDER =
-                BorderFactory.createLineBorder(Colors.INTERACTABLE_DISABLED, 1);
-        public static final Border SEAT_BUTTON_SELECTED_BORDER =
+        public static final Border INTERACTABLE_SELECTED_BORDER =
                 BorderFactory.createLineBorder(Colors.INTERACTABLE_SELECTED, 1);
     }
 }

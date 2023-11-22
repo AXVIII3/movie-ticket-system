@@ -59,6 +59,7 @@ public class Movie
     public void DisplayDetails()
     {
         System.out.println("🎥 " + name + tagline + " 🎥");
+        System.out.println("📆 Release: " + releaseYear);
         System.out.println("📃 Description: " + description);
         System.out.println("🎬 Director(s): " + directors);
         System.out.println("✒️ Writer(s): " + writers);
@@ -66,10 +67,5 @@ public class Movie
         System.out.println("📚 Genre: " + genre);
         System.out.println("⭐ Rating: " + rating);
         System.out.println("⏱️ Duration: " + duration);
-//        System.out.println("📆️ Available Cinema Halls: ");
-//        for (int i = 0; i < dates.length; i++)
-//        {
-//            System.out.print((i != 0 ? "" : ", ") + dates[i].date + "  (" + dates[i].timesStr + ")");
-//        }
     }
 }

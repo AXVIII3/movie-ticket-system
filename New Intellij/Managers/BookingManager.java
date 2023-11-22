@@ -25,16 +25,21 @@ public class BookingManager
             Movies[i++] = new Movie(data.trim().split("\\r?\\n"));
     }
 
-    public static void BookSeats(Movie movie, int[] seats, Date date, int timeIndex)
+    public static int[] BookSeats(Movie movie, CinemaHall hall, Date date, int timeIndex, ArrayList<Integer> seats,
+                                  int[] ticketsPerSection)
     {
+//        int baseCost =
+        int[] returns = {  };
+
         Path path = Path.of(DataManager.SEATS_ARRANGEMENT_PATH + movie.name + "/" +
+                            hall.name + "/" +
                             date.date + "/" +
                             date.times[timeIndex].replace(":", "_") + ".txt");
-        for (int seat : seats)
+        for (Integer seat : seats)
         {
             try
             {
-                Files.writeString(path, String.valueOf(seat), StandardOpenOption.APPEND);
+                Files.writeString(path, seat.toString(), StandardOpenOption.APPEND);
             }
             catch (Exception e)
             {
@@ -42,6 +47,8 @@ public class BookingManager
                 System.exit(0);
             }
         }
+
+        return returns;
     }
 
     public static boolean AreSeatsAvailableIn(Movie movie, CinemaHall hall)
@@ -76,8 +83,12 @@ public class BookingManager
                                 hall.name + "/" +
                                 date.date + "/" +
                                 date.times[timeIndex].replace(":", "_") + ".txt");
-            for (String bookedSeat : Files.readString(file).trim().split("\\r?\\n"))
-                bookedSeats.add(Integer.parseInt(bookedSeat));
+            String[] bookedSeatsRead = Files.readString(file).trim().split("\\r?\\n");
+
+            if (bookedSeatsRead.length == 0) return bookedSeats;
+
+            for (String bookedSeat : bookedSeatsRead)
+                if (!bookedSeat.isEmpty() && !bookedSeat.isBlank()) bookedSeats.add(Integer.parseInt(bookedSeat));
         }
         catch (Exception e)
         {

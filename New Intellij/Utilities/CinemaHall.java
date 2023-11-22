@@ -2,6 +2,8 @@ package Utilities;
 
 import Managers.BookingManager;
 
+import java.util.ArrayList;
+
 public class CinemaHall
 {
     public String name;
@@ -33,16 +35,49 @@ public class CinemaHall
         premiumRowCost = Integer.parseInt(costs[2].trim());
     }
 
-    public int[][] GetFrontRowArrangement()
+    public int[][] GetFrontRowArrangement(Movie movie, Date date, int timeIndex)
     {
-        return null;
+        ArrayList<Integer> bookedSeats = BookingManager.GetBookedSeats(movie, this, date, timeIndex);
+        int[][] seats = new int[frontRows][columns];
+
+        int k = 1;
+        for (int i = 0; i < frontRows; i++)
+        {
+            for (int j = 0; j < columns; j++, k++)
+            {
+                seats[i][j] = bookedSeats.contains(k) ? -1 : k;
+            }
+        }
+        return seats;
     }
-    public int[][] GetNormalRowArrangement()
+    public int[][] GetNormalRowArrangement(Movie movie, Date date, int timeIndex)
     {
-        return null;
+        ArrayList<Integer> bookedSeats = BookingManager.GetBookedSeats(movie, this, date, timeIndex);
+        int[][] seats = new int[normalRows][columns];
+
+        int k = frontRows * columns;
+        for (int i = 0; i < normalRows; i++)
+        {
+            for (int j = 0; j < columns; j++, k++)
+            {
+                seats[i][j] = bookedSeats.contains(k) ? -1 : k;
+            }
+        }
+        return seats;
     }
-    public int[][] GetPremiumRowArrangement()
+    public int[][] GetPremiumRowArrangement(Movie movie, Date date, int timeIndex)
     {
-        return null;
+        ArrayList<Integer> bookedSeats = BookingManager.GetBookedSeats(movie, this, date, timeIndex);
+        int[][] seats = new int[premiumRows][columns];
+
+        int k = (frontRows + normalRows) * columns;
+        for (int i = 0; i < premiumRows; i++)
+        {
+            for (int j = 0; j < columns; j++, k++)
+            {
+                seats[i][j] = bookedSeats.contains(k) ? -1 : k;
+            }
+        }
+        return seats;
     }
 }

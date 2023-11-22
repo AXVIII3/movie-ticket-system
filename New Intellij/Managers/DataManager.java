@@ -41,6 +41,7 @@ public class DataManager
                         File dateDir = new File(dateDirPath);
                         if (!dateDir.exists()) dateDir.mkdir();
 
+                        int i = 0;
                         for (String time : date.times)
                         {
                             File timeFile =
@@ -48,10 +49,14 @@ public class DataManager
                             if (!timeFile.exists())
                             {
                                 timeFile.createNewFile();
-                                RandomSeatsFiller.Fill(timeFile.toPath(), hall.TotalSeats(), false);
+                                RandomSeatsFiller.Fill(movie, hall, date, i, timeFile.toPath(),
+                                        hall.TotalSeats(), false);
                             }
                             else
-                                RandomSeatsFiller.Fill(timeFile.toPath(), hall.TotalSeats(), true);
+                                RandomSeatsFiller.Fill(movie, hall, date, i, timeFile.toPath(),
+                                        hall.TotalSeats(), true);
+
+                            i++;
                         }
                     }
                 }
