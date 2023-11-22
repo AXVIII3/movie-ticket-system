@@ -26,6 +26,25 @@ public class ScrollPane extends JScrollPane
             }
         });
     }
+
+    public ScrollPane(JList<Object> list)
+    {
+        super(list);
+
+        setOpaque(false);
+        setBorder(null);
+        getViewport().setOpaque(false);
+
+        getVerticalScrollBar().setBackground(Visuals.Colors.SCROLLBAR_BACKGROUND);
+        getVerticalScrollBar().setUI(new WithoutArrowButtonScrollBarUI() {
+            @Override
+            protected void configureScrollBarColors() {
+                this.thumbColor = Visuals.Colors.SCROLLBAR_THUMB;
+                this.thumbHighlightColor = Visuals.Colors.SCROLLBAR_BORDER;
+                this.scrollBarWidth = 10;
+            }
+        });
+    }
 }
 
 class WithoutArrowButtonScrollBarUI extends BasicScrollBarUI {

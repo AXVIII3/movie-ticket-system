@@ -1,5 +1,6 @@
 package Managers;
 
+import Utilities.Date;
 import Utilities.Movie;
 import Utilities.RandomSeatsFiller;
 
@@ -12,6 +13,7 @@ public class DataManager
     // FILE PATHS
     private static final String MOVIES_DATA_PATH = "Data/Movies.txt";
     public static final String SEATS_ARRANGEMENT_PATH = "Data/Seating/";
+    public static final String ACCOUNTS_FILE_PATH = "Data/Accounts.txt";
 
     public static void Initialize()
     {
@@ -26,13 +28,13 @@ public class DataManager
                 File movieDir = new File(movieDirPath);
                 if (!movieDir.exists()) movieDir.mkdir();
 
-                for (String date : movie.dates)
+                for (Date date : movie.dates)
                 {
-                    String dateDirPath = movieDirPath + date + "/";
+                    String dateDirPath = movieDirPath + date.date + "/";
                     File dateDir = new File(dateDirPath);
                     if (!dateDir.exists()) dateDir.mkdir();
 
-                    for (String time : movie.times)
+                    for (String time : date.times)
                     {
                         File timeFile =
                             new File(dateDirPath + time.replace(":", "_") + ".txt");
@@ -64,6 +66,23 @@ public class DataManager
         catch (Exception e)
         {
             System.out.println("Error Processing Movie Data!");
+            System.exit(0);
+            return null;
+        }
+    }
+
+    public static String[] ProcessAccountsData()
+    {
+        try
+        {
+            Path file = Path.of(ACCOUNTS_FILE_PATH);
+            String data = Files.readString(file);
+
+            return data.trim().split("\\r?\\n\\r?\\n");
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error Processing Accounts Data!");
             System.exit(0);
             return null;
         }

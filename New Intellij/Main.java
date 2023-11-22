@@ -22,6 +22,6 @@ public class Main
 
     private static void Play()
     {
-        GuiAppManager.Start();
+        GuiAppManager.StartGUI();
     }
 }

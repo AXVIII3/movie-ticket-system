@@ -23,6 +23,7 @@ public class Window extends JFrame
         setTitle("Movie Ticket System ~ P.B.A.S.");
         setDefaultCloseOperation(Window.EXIT_ON_CLOSE);
         setIconImage(icon.getImage());
+        setLocationRelativeTo(null);
     }
 
     public void addScreen(Screen screen)

@@ -13,11 +13,11 @@ public class Visuals
         {
             File fontFile = new File("Assets/Font.ttf");
             Fonts.TITLE_FONT = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.BOLD, 70f);
-            Fonts.SUBTITLE_FONT = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.BOLD, 30f);
+            Fonts.SUBTITLE_FONT = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.BOLD, 35f);
             Fonts.HEADING_FONT = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.BOLD, 55f);
             Fonts.SUBHEADING_FONT = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.BOLD, 25f);
-            Fonts.NORMAL_FONT = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.BOLD, 20f);
-            Fonts.SMALL_FONT = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.BOLD, 12f);
+            Fonts.NORMAL_FONT = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.BOLD, 18f);
+            Fonts.SMALL_FONT = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.BOLD, 14f);
         }
         catch (Exception e)
         {
@@ -32,7 +32,11 @@ public class Visuals
         public static final Color GRADIENT_2 = new Color(0x1A1300);
 
         public static final Color TEXT_NORMAL = new Color(0xD3AE00);
-        public static final Color TEXT_DARKER = new Color(0xC2A000);
+        public static final Color TEXT_NORMAL_DARKER = new Color(0xC2A000);
+        public static final Color TEXT_DARK = new Color(0x131313);
+
+
+        public static final Color COMBO_BOX_NORMAL = new Color(0x131009);
 
         public static final Color BUTTON_NORMAL = new Color(0x14110A);
         public static final Color BUTTON_PRESSED = new Color(0x0A0905);

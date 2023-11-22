@@ -10,7 +10,7 @@ public class HallLayout
     public static final int COLUMNS = 16;
     public static int TotalSeats() { return (FRONT_ROWS + NORMAL_ROWS + PREMIUM_ROWS) * COLUMNS; }
 
-    public static int[][] GetFrontArrangement(Movie movie)
+    public static int[][] GetFrontArrangement(Movie movie, Date date, int timeIndex)
     {
         int k = 1;
         int[][] frontRow = new int[FRONT_ROWS][COLUMNS];
@@ -18,7 +18,7 @@ public class HallLayout
         {
             for (int j = 0; j < COLUMNS; j++, k++)
             {
-                if (!BookingManager.GetBookedSeats(movie).contains(k)) frontRow[i][j] = k;
+                if (!BookingManager.GetBookedSeats(movie, date, timeIndex).contains(k)) frontRow[i][j] = k;
                 else frontRow[i][j] = -1;
             }
         }
@@ -26,7 +26,7 @@ public class HallLayout
         return frontRow;
     }
 
-    public static int[][] GetNormalArrangement(Movie movie)
+    public static int[][] GetNormalArrangement(Movie movie, Date date, int timeIndex)
     {
         int k = FRONT_ROWS * COLUMNS;
         int[][] normalRow = new int[NORMAL_ROWS][COLUMNS];
@@ -34,7 +34,7 @@ public class HallLayout
         {
             for (int j = 0; j < COLUMNS; j++, k++)
             {
-                if (!BookingManager.GetBookedSeats(movie).contains(k)) normalRow[i][j] = k;
+                if (!BookingManager.GetBookedSeats(movie, date, timeIndex).contains(k)) normalRow[i][j] = k;
                 else normalRow[i][j] = -1;
             }
         }
@@ -42,7 +42,7 @@ public class HallLayout
         return normalRow;
     }
 
-    public static int[][] GetPremiumArrangement(Movie movie)
+    public static int[][] GetPremiumArrangement(Movie movie, Date date, int timeIndex)
     {
         int k = (FRONT_ROWS + NORMAL_ROWS) * COLUMNS;
         int[][] premiumRow = new int[PREMIUM_ROWS][COLUMNS];
@@ -50,7 +50,7 @@ public class HallLayout
         {
             for (int j = 0; j < COLUMNS; j++, k++)
             {
-                if (!BookingManager.GetBookedSeats(movie).contains(k)) premiumRow[i][j] = k;
+                if (!BookingManager.GetBookedSeats(movie, date, timeIndex).contains(k)) premiumRow[i][j] = k;
                 else premiumRow[i][j] = -1;
             }
         }
