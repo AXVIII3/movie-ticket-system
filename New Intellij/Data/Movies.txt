@@ -7,11 +7,10 @@ Historic Drama
 8.5/10
 2022
 3h
-Cinepolis, INOX, Navina
+Cinepolis # 3.4.2 # 16, INOX # 3.5.2 # 20, Navina # 2.7.3 # 15
 25th November, 26th November # 25th November, 26th November # 25th November, 26th November
 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
-2D#0, 3D#20, IMAX#50
-320, 360, 400
+320, 360, 400 # 320, 360, 400 # 320, 360, 400
 
 The Hunger Games: The Ballad of Songbirds & Snakes
 Coriolanus Snow mentors and falls in love with the female District 12 tribute in the 10th Hunger Games
@@ -22,11 +21,10 @@ Action Adventure
 7.2/10
 2022
 2h 37m
-Cinepolis, INOX, Navina
+Cinepolis # 3.4.2 # 16, INOX # 3.5.2 # 20, Navina # 2.7.3 # 15
 25th November, 27th November, 28th November # 25th November, 26th November # 25th November, 26th November
 12:30pm, 9:30pm # 1:00pm # 9:00pm ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
-2D#0, 3D#20, IMAX#50
-300
+320, 360, 400 # 320, 360, 400 # 320, 360, 400
 
 The Marvels
 Carol Denvers has to save the universe with Kamala Khan and Monica Rambeau as their powers are entangled
@@ -37,11 +35,10 @@ Action Fantasy
 6/10
 2022
 1h 45m
-Cinepolis, INOX, Navina
+Cinepolis # 3.4.2 # 16, INOX # 3.5.2 # 20, Navina # 2.7.3 # 15
 27th November, 28th November # 25th November, 26th November # 25th November, 26th November
 9:00am, 6:00pm # 7:00am ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
-2D#0, 3D#20, IMAX#50
-250
+320, 360, 400 # 320, 360, 400 # 320, 360, 400
 
 Spider-Man: Across the Spider-Verse
 Watch Miles Morales take on a new threat with his team of spider-people from other dimensions
@@ -52,11 +49,10 @@ Animated Action Adventure
 8.7/10
 2022
 2h 20m
-Cinepolis, INOX, Navina
+Cinepolis # 3.4.2 # 16, INOX # 3.5.2 # 20, Navina # 2.7.3 # 15
 25th November, 28th November # 25th November, 26th November # 25th November, 26th November
 1:30pm, 7:00pm, 9:00pm # 4:00pm, 12:10am ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
-2D#0, 3D#20, IMAX#50
-350
+320, 360, 400 # 320, 360, 400 # 320, 360, 400
 
 Top Gun: Maverick
 Maverick faces his past and embarks on a crucial mission with his new team of graduates mentored by him
@@ -67,11 +63,10 @@ Action Drama
 8.3/10
 2022
 2h 10m
-Cinepolis, INOX, Navina
+Cinepolis # 3.4.2 # 16, INOX # 3.5.2 # 20, Navina # 2.7.3 # 15
 26th November, 30th November, 1st December # 25th November, 26th November # 25th November, 26th November
 12:30pm, 9:00pm # 9:00pm # 10:00pm ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
-2D#0, 3D#20, IMAX#50
-400
+320, 360, 400 # 320, 360, 400 # 320, 360, 400
 
 Mission Impossible: Dead Reckoning Part One
 Ethan Hunt and his IMF team must track down dangerous weapon and keep it from falling in the wrong hands
@@ -82,11 +77,10 @@ Thrilling Action Adventure
 7.8/10
 2022
 2h 43min
-Cinepolis, INOX, Navina
+Cinepolis # 3.4.2 # 16, INOX # 3.5.2 # 20, Navina # 2.7.3 # 15
 30th November, 1st December # 25th November, 26th November # 25th November, 26th November
 1:30pm, 7:00pm, 9:00pm # 7:00am, 6:00am ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
-2D#0, 3D#20, IMAX#50
-330
+320, 360, 400 # 320, 360, 400 # 320, 360, 400
 
 Barbie
 Barbie suffers a crisis that leads her to question her world and her existence
@@ -97,11 +91,10 @@ Fantasy Comedic Adventure
 7/10
 2022
 1h 54m
-Cinepolis, INOX, Navina
+Cinepolis # 3.4.2 # 16, INOX # 3.5.2 # 20, Navina # 2.7.3 # 15
 28th November, 30th November, 1st December # 25th November, 26th November # 25th November, 26th November
 2:00pm, 12:00am # 8:30am, 7:20pm # 8:30am, 7:20pm ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
-2D#0, 3D#20, IMAX#50
-300
+320, 360, 400 # 320, 360, 400 # 320, 360, 400
 
 John Wick: Chapter 4
 John Wick tries to defeat The High Table and gain his freedom while fighting against friends and foes
@@ -112,11 +105,10 @@ Thrilling Action Crime
 7.7/10
 2022
 2h 49m
-Cinepolis, INOX, Navina
+Cinepolis # 3.4.2 # 16, INOX # 3.5.2 # 20, Navina # 2.7.3 # 15
 27th November, 28th November, 1st December # 25th November, 26th November # 25th November, 26th November
 8:30am, 7:20pm # 2:00pm, 12:00am # 9:00pm ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
-2D#0, 3D#20, IMAX#50
-280
+320, 360, 400 # 320, 360, 400 # 320, 360, 400
 
 The Batman
 Batman investigates a serial killer going after political figures and tries to fix corruption in the system
@@ -127,8 +119,7 @@ Action Drama
 7.8/10
 2022
 2h 56m
-Cinepolis, INOX, Navina
+Cinepolis # 3.4.2 # 16, INOX # 3.5.2 # 20, Navina # 2.7.3 # 15
 29th November, 30th November # 25th November, 26th November # 25th November, 26th November
 1:30pm, 7:00pm, 9:00pm # 7:00pm, 9:00pm ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
-2D#0, 3D#20, IMAX#50
-340
+320, 360, 400 # 320, 360, 400 # 320, 360, 400

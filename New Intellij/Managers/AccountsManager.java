@@ -70,9 +70,9 @@ public class AccountsManager
         }
     }
 
-    public static boolean ValidateEmail(String emailStr)
+    public static boolean IsInvalidEmail(String emailStr)
     {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
-        return matcher.matches();
+        return !matcher.matches();
     }
 }

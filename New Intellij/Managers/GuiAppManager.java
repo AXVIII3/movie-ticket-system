@@ -3,6 +3,7 @@ package Managers;
 import GUI.Dialogs.AuthenticateDialog;
 import GUI.Screens.*;
 import GUI.Window;
+import Utilities.CinemaHall;
 import Utilities.Date;
 import Utilities.Movie;
 
@@ -11,9 +12,9 @@ public class GuiAppManager
     private static Window window;
 
     public static Movie movie;
+    public static CinemaHall hall;
     public static Date date;
     public static int timeIndex;
-    public static int screenTypeIndex;
 
     public static void Initialize()
     {
@@ -25,21 +26,26 @@ public class GuiAppManager
         window.addScreen(new EmptyScreen());
     }
 
-    public static void SetData(Movie _movie, String dt, String tm, int screenStyle)
+    public static void SetData(Movie _movie, String _hall, String dt, String tm)
     {
         movie = _movie;
-        for (Date _date : movie.dates)
-            if (_date.date.equals(dt)) date = _date;
-
-        int i = 0;
-        for (String _time : date.times)
+        for (CinemaHall hall : movie.cinemaHalls)
         {
-            if (tm.equals(_time)) break;
-            i++;
-        }
-        timeIndex = i;
+            if (hall.name.equals(_hall))
+            {
+                for (Date _date : hall.dates)
+                    if (_date.date.equals(dt)) date = _date;
 
-        screenTypeIndex = screenStyle;
+                int i = 0;
+                for (String _time : date.times)
+                {
+                    if (tm.equals(_time)) break;
+                    i++;
+                }
+
+                timeIndex = i;
+            }
+        }
     }
 
     public static void StartGUI()

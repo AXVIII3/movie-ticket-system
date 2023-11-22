@@ -1,7 +1,7 @@
 package Managers;
 
+import Utilities.CinemaHall;
 import Utilities.Date;
-import Utilities.HallLayout;
 import Utilities.Movie;
 
 import java.nio.file.Files;
@@ -12,8 +12,8 @@ import java.util.ArrayList;
 public class BookingManager
 {
     public static Movie[] Movies;
-    public static final int NORMAL_EXTRA_COST = 30;
-    public static final int PREMIUM_EXTRA_COST = 50;
+    public static final float CGST_PERCENTAGE = 2.5f;
+    public static final float SGST_PERCENTAGE = 2.5f;
 
     public static void Initialize()
     {
@@ -44,25 +44,36 @@ public class BookingManager
         }
     }
 
-    public static boolean AreSeatsAvailableOn(Movie movie, Date date)
+    public static boolean AreSeatsAvailableIn(Movie movie, CinemaHall hall)
     {
+        int k = 0;
+        for (int i = 0; i < hall.dates.length; i++)
+            if (!AreSeatsAvailableOn(movie, hall, hall.dates[i])) k++;
+
+        return k < hall.dates.length;
+    }
+
+    public static boolean AreSeatsAvailableOn(Movie movie, CinemaHall hall, Date date)
+    {
+        int k = 0;
         for (int i = 0; i < date.times.length; i++)
-            if (BookingManager.GetBookedSeats(movie, date, i).size() < HallLayout.TotalSeats()) return true;
+            if (!AreSeatsAvailableAt(movie, hall, date, i)) k++;
 
-        return false;
+        return k < date.times.length;
     }
 
-    public static boolean AreSeatsAvailableAt(Movie movie, Date date, int timeIndex)
+    public static boolean AreSeatsAvailableAt(Movie movie, CinemaHall hall, Date date, int timeIndex)
     {
-        return !(BookingManager.GetBookedSeats(movie, date, timeIndex).size() >= HallLayout.TotalSeats());
+        return BookingManager.GetBookedSeats(movie, hall, date, timeIndex).size() < hall.TotalSeats();
     }
 
-    public static ArrayList<Integer> GetBookedSeats(Movie movie, Date date, int timeIndex)
+    public static ArrayList<Integer> GetBookedSeats(Movie movie, CinemaHall hall, Date date, int timeIndex)
     {
         ArrayList<Integer> bookedSeats = new ArrayList<>();
         try
         {
             Path file = Path.of(DataManager.SEATS_ARRANGEMENT_PATH + movie.name + "/" +
+                                hall.name + "/" +
                                 date.date + "/" +
                                 date.times[timeIndex].replace(":", "_") + ".txt");
             for (String bookedSeat : Files.readString(file).trim().split("\\r?\\n"))

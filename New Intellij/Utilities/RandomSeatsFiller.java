@@ -1,48 +1,71 @@
 package Utilities;
 
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Random;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.util.Random;
 
 public class RandomSeatsFiller
 {
     private static final int MIN_SEATS_TO_BE_FILLED = 40;
     private static final int MAX_SEATS_THAT_CAN_BE_FILLED = 70;
+    private static final int MAX_SEATS_THAT_CAN_BE_FILLED_APPEND = 4;
     private static final int MAX_CONSECUTIVE_SEATS = 8;
 
-    public static void Fill(Path path)
+    public static void Fill(Path path, int totalSeats, boolean isAppend)
     {
         Random randomGenerator = new Random();
-        int seatsToBeFilled = randomGenerator.nextInt(MIN_SEATS_TO_BE_FILLED,
-                MAX_SEATS_THAT_CAN_BE_FILLED + 1);
+        int seatsToBeFilled = isAppend ?
+                              randomGenerator.nextInt(0, MAX_SEATS_THAT_CAN_BE_FILLED_APPEND + 1) :
+                              randomGenerator.nextInt(MIN_SEATS_TO_BE_FILLED, MAX_SEATS_THAT_CAN_BE_FILLED + 1);
 
-        ArrayList<Integer> chosenSeats = new ArrayList<>(seatsToBeFilled);
-        StringBuilder toBeWritten = new StringBuilder();
-        int seatsFilled = 0;
+        try
+        {
+            Files.writeString(path, randomGenerator.nextInt(1, totalSeats + 1) + "\n",
+                    StandardOpenOption.APPEND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e + "\nError Writing Random Seats In " + path);
+            System.exit(0);
+        }
+
+        int seatsFilled = 1;
 
         while (seatsFilled < seatsToBeFilled)
         {
-            int randomSeat = randomGenerator.nextInt(1, HallLayout.TotalSeats() + 1);
+            int randomSeat = randomGenerator.nextInt(1, totalSeats + 1);
 
             int numberOfConsecutiveSeats = randomGenerator.nextInt(0, MAX_CONSECUTIVE_SEATS);
-            for (int i = 0; i <= numberOfConsecutiveSeats; i++)
+            OUTER: for (int i = 0; i <= numberOfConsecutiveSeats; i++)
             {
-                if (chosenSeats.contains(randomSeat + i)) continue;
-                chosenSeats.add(randomSeat + i);
-                toBeWritten.append(randomSeat + i).append("\n");
+                try
+                {
+                    Path file = Path.of(path.toUri());
+                    String bookedSeats = Files.readString(file);
+
+                    for (String bookedSeat : bookedSeats.trim().split("\\r?\\n"))
+                        if (Integer.parseInt(bookedSeat.trim()) == (randomSeat + i)) continue OUTER;
+                }
+                catch (Exception e)
+                {
+                    System.out.println(e + "\nError Reading Seating Data!");
+                    System.exit(0);
+                }
+
+                try
+                {
+                    Files.writeString(path, randomSeat + i + "\n", StandardOpenOption.APPEND);
+                }
+                catch (Exception e)
+                {
+                    System.out.println(e + "\nError Writing Random Seats In " + path);
+                    System.exit(0);
+                }
                 seatsFilled++;
             }
         }
 
-        try
-        {
-            Files.writeString(path, toBeWritten);
-        }
-        catch (Exception e)
-        {
-            System.out.println("Error Writing Random Seats In " + path.toString());
-            System.exit(0);
-        }
+
     }
 }

@@ -15,10 +15,7 @@ public class Movie
     public String rating;
     public String releaseYear;
     public String duration;
-    public Date[] dates;
-    public String[] availableScreens;
-    public int[] screensExtraCost;
-    public int[] costs;
+    public CinemaHall[] cinemaHalls;
     public String thumbnailPath;
     public String posterPath;
 
@@ -36,32 +33,27 @@ public class Movie
         rating = data[6].trim();
         releaseYear = data[7].trim();
         duration = data[8].trim();
-        String[] _dates = data[9].trim().split(", ");
-        String[] times = data[10].trim().split(" # ");
-        dates = new Date[_dates.length];
-        if (dates.length != times.length)
-        {
-            System.out.println("Dates and times are out of sync!");
-            System.exit(0);
-        }
-        for (int i = 0; i < dates.length; i++)
-            dates[i] = new Date(_dates[i], times[i]);
 
-        String[] _availableScreens = data[11].trim().split(", ");
-        availableScreens = new String[_availableScreens.length];
-        screensExtraCost = new int[_availableScreens.length];
-        for (int i = 0; i < _availableScreens.length; i++)
+        String[] halls = data[9].trim().split(", ");
+        String[] datesPerHall = data[10].trim().split(" # ");
+        String[] timesPerHall = data[11].trim().split(" ## ");
+        String[] costsPerHall = data[12].trim().split(" # ");
+        cinemaHalls = new CinemaHall[halls.length];
+        for (int i = 0; i < halls.length; i++)
         {
-            availableScreens[i] = _availableScreens[i].trim().split("#")[0];
-            screensExtraCost[i] = Integer.parseInt(_availableScreens[i].trim().split("#")[1]);
+            String[] hallData = halls[i].trim().split(" # ");
+            cinemaHalls[i] = new CinemaHall(
+                    hallData[0].trim(),
+                    datesPerHall[i],
+                    timesPerHall[i],
+                    hallData[1].trim().split("\\."),
+                    Integer.parseInt(hallData[2].trim()),
+                    costsPerHall[i].trim().split(", ")
+            );
         }
+
         thumbnailPath = THUMBNAIL_PATH + name + ".jpg";
         posterPath = POSTER_PATH + name + ".jpg";
-
-        String[] _costs = data[12].trim().split(", ");
-        costs = new int[_costs.length];
-        for (int i = 0; i < _costs.length; i++)
-            costs[i] = Integer.parseInt(_costs[i]);
     }
 
     public void DisplayDetails()
@@ -74,10 +66,10 @@ public class Movie
         System.out.println("📚 Genre: " + genre);
         System.out.println("⭐ Rating: " + rating);
         System.out.println("⏱️ Duration: " + duration);
-        System.out.println("📆️ Available Showtimes: ");
-        for (int i = 0; i < dates.length; i++)
-        {
-            System.out.print((i != 0 ? "" : ", ") + dates[i].date + "  (" + dates[i].timesStr + ")");
-        }
+//        System.out.println("📆️ Available Cinema Halls: ");
+//        for (int i = 0; i < dates.length; i++)
+//        {
+//            System.out.print((i != 0 ? "" : ", ") + dates[i].date + "  (" + dates[i].timesStr + ")");
+//        }
     }
 }

@@ -2,6 +2,7 @@ package GUI.Dialogs;
 
 import GUI.GridBagSettings;
 import GUI.Label;
+import GUI.Screens.PasswordField;
 import GUI.TextField;
 import GUI.Button;
 import GUI.Window;
@@ -40,8 +41,8 @@ public class AuthenticateDialog extends JDialog
         Button loginButton = new Button("Login", new Dimension(200, 35));
         TextField nameTextField = new TextField();
         TextField emailTextField = new TextField();
-        TextField passwordTextField = new TextField();
-        TextField confirmPasswordTextField = new TextField();
+        PasswordField passwordTextField = new PasswordField();
+        PasswordField confirmPasswordTextField = new PasswordField();
         AtomicBoolean isAuthenticated = new AtomicBoolean(false);
 
         // Layouts
@@ -62,7 +63,7 @@ public class AuthenticateDialog extends JDialog
             @Override
             public void windowClosed(WindowEvent e)
             {
-                if (!isAuthenticated.get()) window.openScreen(movie.name);;
+                if (!isAuthenticated.get()) window.openScreen(movie.name);
             }
 
             @Override
@@ -85,7 +86,7 @@ public class AuthenticateDialog extends JDialog
         registerPanel.setOpaque(false);
 
         authenticateButton.addActionListener(e -> {
-            if (!AccountsManager.ValidateEmail(emailTextField.getText()))
+            if (AccountsManager.IsInvalidEmail(emailTextField.getText()))
                 emailTextField.setText("Please enter a valid E-mail!");
             else
             {
@@ -123,7 +124,7 @@ public class AuthenticateDialog extends JDialog
             }
         });
         registerButton.addActionListener(e -> {
-            if (!AccountsManager.ValidateEmail(emailTextField.getText()))
+            if (AccountsManager.IsInvalidEmail(emailTextField.getText()))
                 emailTextField.setText("Please enter a valid E-mail");
             if (AccountsManager.IsAccountRegistered(emailTextField.getText()))
             {
@@ -168,7 +169,7 @@ public class AuthenticateDialog extends JDialog
             }
         });
         loginButton.addActionListener(e -> {
-            if (!AccountsManager.ValidateEmail(emailTextField.getText()))
+            if (AccountsManager.IsInvalidEmail(emailTextField.getText()))
                 emailTextField.setText("Please enter a valid E-mail");
             if (!AccountsManager.IsAccountRegistered(emailTextField.getText()))
             {

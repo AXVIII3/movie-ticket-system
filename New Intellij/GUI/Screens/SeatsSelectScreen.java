@@ -1,14 +1,9 @@
 package GUI.Screens;
 
-import GUI.*;
 import GUI.Button;
+import GUI.GridBagSettings;
 import GUI.Label;
-import GUI.Window;
-import Managers.AccountsManager;
-import Managers.BookingManager;
-import Managers.GuiAppManager;
-import Utilities.Account;
-import Utilities.Movie;
+import GUI.Screen;
 import Utilities.Visuals;
 
 import javax.swing.*;
@@ -61,9 +56,7 @@ public class SeatsSelectScreen extends Screen
         buttonsPanel.setOpaque(false);
 //        seatButtonPanel.setOpaque(false);
         headingLabel.setHorizontalAlignment(JLabel.LEFT);
-        confirmButton.addActionListener(e -> {
-            System.out.println("Confirmed");
-        });
+        confirmButton.addActionListener(e -> System.out.println("Confirmed"));
 
         buttonsPanel.add(returnButton, returnButtonConstraints);
         buttonsPanel.add(confirmButton, bookButtonConstraints);

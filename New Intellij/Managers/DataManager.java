@@ -1,5 +1,6 @@
 package Managers;
 
+import Utilities.CinemaHall;
 import Utilities.Date;
 import Utilities.Movie;
 import Utilities.RandomSeatsFiller;
@@ -28,20 +29,29 @@ public class DataManager
                 File movieDir = new File(movieDirPath);
                 if (!movieDir.exists()) movieDir.mkdir();
 
-                for (Date date : movie.dates)
+                for (CinemaHall hall : movie.cinemaHalls)
                 {
-                    String dateDirPath = movieDirPath + date.date + "/";
-                    File dateDir = new File(dateDirPath);
-                    if (!dateDir.exists()) dateDir.mkdir();
+                    String hallDirPath = movieDirPath + hall.name + "/";
+                    File hallDir = new File(hallDirPath);
+                    if (!hallDir.exists()) hallDir.mkdir();
 
-                    for (String time : date.times)
+                    for (Date date : hall.dates)
                     {
-                        File timeFile =
-                            new File(dateDirPath + time.replace(":", "_") + ".txt");
-                        if (!timeFile.exists())
+                        String dateDirPath = hallDirPath + date.date + "/";
+                        File dateDir = new File(dateDirPath);
+                        if (!dateDir.exists()) dateDir.mkdir();
+
+                        for (String time : date.times)
                         {
-                            timeFile.createNewFile();
-                            RandomSeatsFiller.Fill(timeFile.toPath());
+                            File timeFile =
+                                    new File(dateDirPath + time.replace(":", "_") + ".txt");
+                            if (!timeFile.exists())
+                            {
+                                timeFile.createNewFile();
+                                RandomSeatsFiller.Fill(timeFile.toPath(), hall.TotalSeats(), false);
+                            }
+                            else
+                                RandomSeatsFiller.Fill(timeFile.toPath(), hall.TotalSeats(), true);
                         }
                     }
                 }
@@ -49,7 +59,7 @@ public class DataManager
         }
         catch (Exception e)
         {
-            System.out.println("Error Initializing Data!");
+            System.out.println(e + "\nError Initializing Data!");
             System.exit(0);
         }
     }

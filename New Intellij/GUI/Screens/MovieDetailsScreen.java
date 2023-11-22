@@ -1,17 +1,19 @@
 package GUI.Screens;
 
-import GUI.*;
 import GUI.Button;
 import GUI.Label;
 import GUI.Window;
+import GUI.*;
 import Managers.BookingManager;
 import Managers.GuiAppManager;
+import Utilities.CinemaHall;
 import Utilities.Date;
 import Utilities.Movie;
 import Utilities.Visuals;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 public class MovieDetailsScreen extends Screen
 {
@@ -29,7 +31,7 @@ public class MovieDetailsScreen extends Screen
         JPanel detailsPanel = new JPanel();
         JPanel datePanel = new JPanel();
         JPanel timePanel = new JPanel();
-        JPanel screenTypePanel = new JPanel();
+        JPanel hallsPanel = new JPanel();
         JPanel buttonsPanel = new JPanel();
         JLabel posterLabel = new JLabel("");
         Button returnButton  = new Button(
@@ -42,7 +44,7 @@ public class MovieDetailsScreen extends Screen
         );
         ComboBox<String> datesComboBox = new ComboBox<>();
         ComboBox<String> timesComboBox = new ComboBox<>();
-        ComboBox<String> availableScreensComboBox = new ComboBox<>();
+        ComboBox<String> hallsComboBox = new ComboBox<>();
 
         // Detail Labels
         Label nameLabel = new Label(movie.name + movie.tagline, Visuals.Colors.TEXT_NORMAL,
@@ -65,11 +67,11 @@ public class MovieDetailsScreen extends Screen
                 Visuals.Fonts.NORMAL_FONT);
         Label bookDetailsLabel = new Label("Booking details:", Visuals.Colors.TEXT_NORMAL,
                 Visuals.Fonts.SUBHEADING_FONT);
-        Label dateLabel = new Label("Available Dates:      ", Visuals.Colors.TEXT_NORMAL,
+        Label dateLabel = new Label("Available Dates:               ", Visuals.Colors.TEXT_NORMAL,
                 Visuals.Fonts.NORMAL_FONT);
-        Label timeLabel = new Label("Available Times:      ", Visuals.Colors.TEXT_NORMAL,
+        Label timeLabel = new Label("Available Times:               ", Visuals.Colors.TEXT_NORMAL,
                 Visuals.Fonts.NORMAL_FONT);
-        Label availableScreensLabel = new Label("Available Screens:  ", Visuals.Colors.TEXT_NORMAL,
+        Label availableHallsLabel = new Label("Available Cinema Halls:  ", Visuals.Colors.TEXT_NORMAL,
                 Visuals.Fonts.NORMAL_FONT);
         JPanel emptySpace = new JPanel();
 
@@ -117,11 +119,11 @@ public class MovieDetailsScreen extends Screen
                 GridBagSettings.HORIZONTAL, new Insets(0,0, 30, 0));
         GridBagSettings bookingLabelConstraints = new GridBagSettings(0, 9, 1, 0,
                 GridBagSettings.HORIZONTAL, new Insets(0,0, 2, 0));
-        GridBagSettings datesPanelConstraints = new GridBagSettings(0, 10, 0, 0,
+        GridBagSettings hallsPanelConstraints = new GridBagSettings(0, 10, 0, 0,
                 GridBagSettings.HORIZONTAL, new Insets(0,0, 0, 0));
-        GridBagSettings timesPanelConstraints = new GridBagSettings(0, 11, 0, 0,
+        GridBagSettings datesPanelConstraints = new GridBagSettings(0, 11, 0, 0,
                 GridBagSettings.HORIZONTAL, new Insets(0,0, 0, 0));
-        GridBagSettings availableScreensConstraints = new GridBagSettings(0, 12, 0, 0,
+        GridBagSettings timesPanelConstraints = new GridBagSettings(0, 12, 0, 0,
                 GridBagSettings.HORIZONTAL, new Insets(0,0, 0, 0));
         GridBagSettings emptySpaceConstraints = new GridBagSettings(0, 13, 1, 1,
                 GridBagSettings.BOTH, new Insets(0,0, 0, 0));
@@ -133,8 +135,8 @@ public class MovieDetailsScreen extends Screen
         detailsPanel.setLayout(movieDetailsTextLayout);
         datePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         timePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        screenTypePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        screenTypePanel.setOpaque(false);
+        hallsPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        hallsPanel.setOpaque(false);
         datePanel.setOpaque(false);
         timePanel.setOpaque(false);
         buttonsPanel.setOpaque(false);
@@ -143,25 +145,39 @@ public class MovieDetailsScreen extends Screen
         emptySpace.setOpaque(false);
         headingLabel.setHorizontalAlignment(JLabel.LEFT);
         posterLabel.setIcon(new ImageIcon(movie.posterPath));
-        for (int i = 0; i < movie.dates.length; i++)
-            if (BookingManager.AreSeatsAvailableOn(movie, movie.dates[i]))
-                datesComboBox.addItem("  " + movie.dates[i].date);
-        PopulateTimeComboBox(timesComboBox, movie, ((String) datesComboBox.getSelectedItem()).trim());
-        datesComboBox.addActionListener (e -> PopulateTimeComboBox(timesComboBox, movie,
-                ((String) datesComboBox.getSelectedItem()).trim()));
-        for (int i = 0; i < movie.availableScreens.length; i++)
-            availableScreensComboBox.addItem("  " + movie.availableScreens[i] + " " +
-                    (movie.screensExtraCost[i] > 0 ? "(+ Rs." + movie.screensExtraCost[i] + ")" : "")
-            );
+
+        // Populating Combo Boxes
+        for (CinemaHall hall : movie.cinemaHalls)
+            if (BookingManager.AreSeatsAvailableIn(movie, hall))
+                hallsComboBox.addItem("   " + hall.name);
+        hallsComboBox.setSelectedIndex(0);
+        PopulateDatesComboBox(movie, (String) hallsComboBox.getSelectedItem(), datesComboBox);
+        PopulateTimesComboBox(movie, (String) hallsComboBox.getSelectedItem(), (String) datesComboBox.getSelectedItem(),
+                timesComboBox);
+
+        // Action Listeners
+        hallsComboBox.addActionListener(e -> {
+            if (hallsComboBox.getSelectedItem() != null)
+            {
+                PopulateDatesComboBox(movie, (String) hallsComboBox.getSelectedItem(), datesComboBox);
+            }
+        });
+        datesComboBox.addActionListener(e -> {
+            if (datesComboBox.getSelectedItem() != null)
+            {
+                PopulateTimesComboBox(movie, (String) hallsComboBox.getSelectedItem(),
+                        (String) datesComboBox.getSelectedItem(), timesComboBox);
+            }
+        });
         returnButton.addActionListener(e ->
                 ((Window) SwingUtilities.getWindowAncestor(this)).openScreen("Movie Select")
         );
         bookButton.addActionListener(e -> {
             GuiAppManager.SetData(
                     movie,
-                    ((String) datesComboBox.getSelectedItem()).trim(),
-                    ((String) timesComboBox.getSelectedItem()).trim(),
-                    availableScreensComboBox.getSelectedIndex()
+                    ((String) Objects.requireNonNull(hallsComboBox.getSelectedItem())).trim(),
+                    ((String) Objects.requireNonNull(datesComboBox.getSelectedItem())).trim(),
+                    ((String) Objects.requireNonNull(timesComboBox.getSelectedItem())).trim()
             );
             GuiAppManager.StartAuthentication();
         });
@@ -169,14 +185,14 @@ public class MovieDetailsScreen extends Screen
         movieDetailsPanel.add(posterLabel, posterLabelConstraints);
         movieDetailsPanel.add(detailsPanel, detailsPanelConstraints);
 
+        hallsPanel.add(availableHallsLabel);
+        hallsPanel.add(hallsComboBox);
+
         datePanel.add(dateLabel);
         datePanel.add(datesComboBox);
 
         timePanel.add(timeLabel);
         timePanel.add(timesComboBox);
-
-        screenTypePanel.add(availableScreensLabel);
-        screenTypePanel.add(availableScreensComboBox);
 
         detailsPanel.add(nameLabel, nameLabelConstraints);
         detailsPanel.add(releaseAndDurationLabel, releaseYearAndDurationLabelConstraints);
@@ -189,9 +205,9 @@ public class MovieDetailsScreen extends Screen
         detailsPanel.add(ratingLabel, ratingLabelConstraints);
         detailsPanel.add(releaseAndDurationLabel, releaseYearAndDurationLabelConstraints);
         detailsPanel.add(bookDetailsLabel, bookingLabelConstraints);
+        detailsPanel.add(hallsPanel, hallsPanelConstraints);
         detailsPanel.add(datePanel, datesPanelConstraints);
         detailsPanel.add(timePanel, timesPanelConstraints);
-        detailsPanel.add(screenTypePanel, availableScreensConstraints);
         detailsPanel.add(emptySpace, emptySpaceConstraints);
 
         buttonsPanel.add(returnButton, returnButtonConstraints);
@@ -203,19 +219,45 @@ public class MovieDetailsScreen extends Screen
         add(buttonsPanel, buttonsPanelConstraints);
     }
 
-    private void PopulateTimeComboBox(ComboBox<String> comboBox, Movie movie, String chosenDate)
+    public void PopulateDatesComboBox(Movie movie, String cinemaHallName, ComboBox<String> comboBox)
     {
-        int i = 0;
-        for (Date date : movie.dates)
-        {
-            if (date.date.equals(chosenDate)) break;
-            i++;
-        }
+        CinemaHall cinemaHall = null;
+        for (CinemaHall _hall : movie.cinemaHalls)
+            if (cinemaHallName.trim().equals(_hall.name))
+            {
+                cinemaHall = _hall;
+                break;
+            }
 
         comboBox.removeAllItems();
+        for (Date date : cinemaHall.dates)
+        {
+            comboBox.addItem("   " + date.date);
+        }
+        comboBox.setSelectedIndex(0);
+    }
 
-        for (int j = 0; j < movie.dates[i].times.length; j++)
-            if (BookingManager.AreSeatsAvailableAt(movie, movie.dates[i], j))
-                comboBox.addItem("  " + movie.dates[i].times[j]);
+    public void PopulateTimesComboBox(Movie movie, String cinemaHallName, String selectedDate, ComboBox<String> comboBox)
+    {
+        CinemaHall cinemaHall = null;
+        for (CinemaHall _hall : movie.cinemaHalls)
+            if (cinemaHallName.trim().equals(_hall.name))
+            {
+                cinemaHall = _hall;
+                break;
+            }
+
+        Date date = null;
+        for (Date _date : cinemaHall.dates)
+            if (selectedDate.trim().equals(_date.date))
+            {
+                date = _date;
+                break;
+            }
+
+        comboBox.removeAllItems();
+        for (String time : date.times)
+            comboBox.addItem("   " + time);
+        comboBox.setSelectedIndex(0);
     }
 }

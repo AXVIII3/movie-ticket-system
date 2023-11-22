@@ -1,7 +1,6 @@
 package GUI.Screens;
 
-import GUI.*;
-import GUI.Window;
+import GUI.Screen;
 
 public class EmptyScreen extends Screen
 {
