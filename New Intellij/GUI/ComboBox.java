@@ -15,7 +15,7 @@ public class ComboBox<E> extends JComboBox<E>
     {
         super();
         setForeground(Visuals.Colors.TEXT_NORMAL);
-        setBackground(Visuals.Colors.COMBO_BOX_NORMAL);
+        setBackground(Visuals.Colors.INTERACTABLE_DARKER);
         setFocusable(false);
         setPreferredSize(new Dimension(300, 35));
         setFont(Visuals.Fonts.SMALL_FONT);

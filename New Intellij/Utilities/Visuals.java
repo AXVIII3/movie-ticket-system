@@ -31,17 +31,19 @@ public class Visuals
         public static final Color GRADIENT_1 = new Color(0x101010);
         public static final Color GRADIENT_2 = new Color(0x1A1300);
 
+        public static final Color DIALOG_BACKGROUND = new Color(0x14110A);
+
         public static final Color TEXT_NORMAL = new Color(0xD3AE00);
         public static final Color TEXT_NORMAL_DARKER = new Color(0xC2A000);
         public static final Color TEXT_DARK = new Color(0x131313);
 
 
-        public static final Color COMBO_BOX_NORMAL = new Color(0x131009);
 
-        public static final Color BUTTON_NORMAL = new Color(0x14110A);
-        public static final Color BUTTON_PRESSED = new Color(0x0A0905);
-        public static final Color BUTTON_DISABLED = new Color(0x9D9D9D);
-        public static final Color BUTTON_SELECTED = new Color(0xA7EF84);
+        public static final Color INTERACTABLE_NORMAL = new Color(0x14110A);
+        public static final Color INTERACTABLE_DARKER = new Color(0x131009);
+        public static final Color INTERACTABLE_INTERACTED = new Color(0x0A0905);
+        public static final Color INTERACTABLE_DISABLED = new Color(0x9D9D9D);
+        public static final Color INTERACTABLE_SELECTED = new Color(0xA7EF84);
 
         public static final Color SCROLLBAR_BACKGROUND = new Color(0x000000);
         public static final Color SCROLLBAR_THUMB = new Color(0x5E4800);
@@ -66,15 +68,15 @@ public class Visuals
     {
         public static final Border SCREEN_BORDER = BorderFactory.createLineBorder(Colors.BORDERS, 4);
 
-        public static final Border BUTTON_BORDER = BorderFactory.createLineBorder(Colors.BORDERS, 2);
-        public static final Border BUTTON_DISABLED_BORDER =
-                BorderFactory.createLineBorder(Colors.BUTTON_DISABLED, 2);
+        public static final Border INTERACTABLE_BORDER = BorderFactory.createLineBorder(Colors.BORDERS, 2);
+        public static final Border INTERACTABLE_DIABLED_BORDER =
+                BorderFactory.createLineBorder(Colors.INTERACTABLE_DISABLED, 2);
 
         public static final Border SEAT_BUTTON_BORDER =
                 BorderFactory.createLineBorder(Colors.BORDERS, 1);
         public static final Border SEAT_BUTTON_DISABLED_BORDER =
-                BorderFactory.createLineBorder(Colors.BUTTON_DISABLED, 1);
+                BorderFactory.createLineBorder(Colors.INTERACTABLE_DISABLED, 1);
         public static final Border SEAT_BUTTON_SELECTED_BORDER =
-                BorderFactory.createLineBorder(Colors.BUTTON_SELECTED, 1);
+                BorderFactory.createLineBorder(Colors.INTERACTABLE_SELECTED, 1);
     }
 }

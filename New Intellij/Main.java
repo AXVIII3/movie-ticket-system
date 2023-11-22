@@ -1,6 +1,8 @@
+import Managers.AccountsManager;
 import Managers.BookingManager;
 import Managers.DataManager;
 import Managers.GuiAppManager;
+import Utilities.Security;
 import Utilities.Visuals;
 
 public class Main
@@ -16,6 +18,8 @@ public class Main
     {
         BookingManager.Initialize();
         DataManager.Initialize();
+        Security.Initialize();
+        AccountsManager.Initialize();
         Visuals.Initialize();
         GuiAppManager.Initialize();
     }

@@ -7,8 +7,9 @@ Historic Drama
 8.5/10
 2022
 3h
-25th November, 26th November
-9:00am, 6:00pm # 6:00am
+Cinepolis, INOX, Navina
+25th November, 26th November # 25th November, 26th November # 25th November, 26th November
+9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
 2D#0, 3D#20, IMAX#50
 320, 360, 400
 
@@ -21,8 +22,9 @@ Action Adventure
 7.2/10
 2022
 2h 37m
-25th November, 27th November, 28th November
-12:30pm, 9:30pm # 1:00pm # 9:00pm
+Cinepolis, INOX, Navina
+25th November, 27th November, 28th November # 25th November, 26th November # 25th November, 26th November
+12:30pm, 9:30pm # 1:00pm # 9:00pm ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
 2D#0, 3D#20, IMAX#50
 300
 
@@ -35,8 +37,9 @@ Action Fantasy
 6/10
 2022
 1h 45m
-27th November, 28th November
-9:00am, 6:00pm # 7:00am
+Cinepolis, INOX, Navina
+27th November, 28th November # 25th November, 26th November # 25th November, 26th November
+9:00am, 6:00pm # 7:00am ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
 2D#0, 3D#20, IMAX#50
 250
 
@@ -49,8 +52,9 @@ Animated Action Adventure
 8.7/10
 2022
 2h 20m
-25th November, 28th November
-1:30pm, 7:00pm, 9:00pm # 4:00pm, 12:10am
+Cinepolis, INOX, Navina
+25th November, 28th November # 25th November, 26th November # 25th November, 26th November
+1:30pm, 7:00pm, 9:00pm # 4:00pm, 12:10am ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
 2D#0, 3D#20, IMAX#50
 350
 
@@ -63,8 +67,9 @@ Action Drama
 8.3/10
 2022
 2h 10m
-26th November, 30th November, 1st December
-12:30pm, 9:00pm # 9:00pm # 10:00pm
+Cinepolis, INOX, Navina
+26th November, 30th November, 1st December # 25th November, 26th November # 25th November, 26th November
+12:30pm, 9:00pm # 9:00pm # 10:00pm ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
 2D#0, 3D#20, IMAX#50
 400
 
@@ -77,8 +82,9 @@ Thrilling Action Adventure
 7.8/10
 2022
 2h 43min
-30th November, 1st December
-1:30pm, 7:00pm, 9:00pm # 7:00am, 6:00am
+Cinepolis, INOX, Navina
+30th November, 1st December # 25th November, 26th November # 25th November, 26th November
+1:30pm, 7:00pm, 9:00pm # 7:00am, 6:00am ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
 2D#0, 3D#20, IMAX#50
 330
 
@@ -91,8 +97,9 @@ Fantasy Comedic Adventure
 7/10
 2022
 1h 54m
-28th November, 30th November, 1st December
-2:00pm, 12:00am # 8:30am, 7:20pm # 8:30am, 7:20pm
+Cinepolis, INOX, Navina
+28th November, 30th November, 1st December # 25th November, 26th November # 25th November, 26th November
+2:00pm, 12:00am # 8:30am, 7:20pm # 8:30am, 7:20pm ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
 2D#0, 3D#20, IMAX#50
 300
 
@@ -105,8 +112,9 @@ Thrilling Action Crime
 7.7/10
 2022
 2h 49m
-27th November, 28th November, 1st December
-8:30am, 7:20pm # 2:00pm, 12:00am # 9:00pm
+Cinepolis, INOX, Navina
+27th November, 28th November, 1st December # 25th November, 26th November # 25th November, 26th November
+8:30am, 7:20pm # 2:00pm, 12:00am # 9:00pm ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
 2D#0, 3D#20, IMAX#50
 280
 
@@ -119,7 +127,8 @@ Action Drama
 7.8/10
 2022
 2h 56m
-29th November, 30th November
-1:30pm, 7:00pm, 9:00pm # 7:00pm, 9:00pm
+Cinepolis, INOX, Navina
+29th November, 30th November # 25th November, 26th November # 25th November, 26th November
+1:30pm, 7:00pm, 9:00pm # 7:00pm, 9:00pm ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
 2D#0, 3D#20, IMAX#50
 340

@@ -163,7 +163,7 @@ public class MovieDetailsScreen extends Screen
                     ((String) timesComboBox.getSelectedItem()).trim(),
                     availableScreensComboBox.getSelectedIndex()
             );
-            GuiAppManager.StartBooking();
+            GuiAppManager.StartAuthentication();
         });
 
         movieDetailsPanel.add(posterLabel, posterLabelConstraints);

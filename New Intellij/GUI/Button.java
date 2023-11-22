@@ -17,9 +17,9 @@ public class Button extends JButton
 	    setRolloverEnabled(false);
         setContentAreaFilled(false);
         setForeground(Visuals.Colors.TEXT_NORMAL);
-        setBackground(Visuals.Colors.BUTTON_NORMAL);
-        setPressedBackgroundColor(Visuals.Colors.BUTTON_PRESSED);
-        setBorder(Visuals.Borders.BUTTON_BORDER);
+        setBackground(Visuals.Colors.INTERACTABLE_NORMAL);
+        setPressedBackgroundColor(Visuals.Colors.INTERACTABLE_INTERACTED);
+        setBorder(Visuals.Borders.INTERACTABLE_BORDER);
         setFont(Visuals.Fonts.NORMAL_FONT);
 	}
     public Button(String text, Dimension dimensions)
@@ -34,9 +34,9 @@ public class Button extends JButton
         setMinimumSize(dimensions);
         setSize(dimensions);
         setForeground(Visuals.Colors.TEXT_NORMAL);
-        setBackground(Visuals.Colors.BUTTON_NORMAL);
-        setPressedBackgroundColor(Visuals.Colors.BUTTON_PRESSED);
-        setBorder(Visuals.Borders.BUTTON_BORDER);
+        setBackground(Visuals.Colors.INTERACTABLE_NORMAL);
+        setPressedBackgroundColor(Visuals.Colors.INTERACTABLE_INTERACTED);
+        setBorder(Visuals.Borders.INTERACTABLE_BORDER);
         setFont(Visuals.Fonts.NORMAL_FONT);
     }
 

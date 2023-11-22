@@ -1,10 +1,7 @@
 package Managers;
 
 import GUI.Dialogs.AuthenticateDialog;
-import GUI.Screens.EmptyScreen;
-import GUI.Screens.MainScreen;
-import GUI.Screens.MovieDetailsScreen;
-import GUI.Screens.MovieSelectScreen;
+import GUI.Screens.*;
 import GUI.Window;
 import Utilities.Date;
 import Utilities.Movie;
@@ -13,10 +10,10 @@ public class GuiAppManager
 {
     private static Window window;
 
-    private static Movie movie;
-    private static Date date;
-    private static int timeIndex;
-    private static int screenTypeIndex;
+    public static Movie movie;
+    public static Date date;
+    public static int timeIndex;
+    public static int screenTypeIndex;
 
     public static void Initialize()
     {
@@ -24,6 +21,7 @@ public class GuiAppManager
         window.addScreen(new MainScreen());
         window.addScreen(new MovieSelectScreen());
         for (Movie movie : BookingManager.Movies) window.addScreen(new MovieDetailsScreen(movie));
+        window.addScreen(new SeatsSelectScreen());
         window.addScreen(new EmptyScreen());
     }
 
@@ -50,9 +48,18 @@ public class GuiAppManager
         window.openScreen("Main");
     }
 
+    public static void StartAuthentication()
+    {
+        if (AccountsManager.currentAccount != null)
+        {
+            StartBooking();
+            return;
+        }
+        window.openScreen("Empty Screen");
+        new AuthenticateDialog(window, movie);
+    }
     public static void StartBooking()
     {
-        window.openScreen("Empty Screen");
-        new AuthenticateDialog(window);
+        window.openScreen("Seat Select");
     }
 }
