@@ -35,15 +35,17 @@ public class Movie
         duration = data[8].trim();
 
         String[] halls = data[9].trim().split(", ");
-        String[] datesPerHall = data[10].trim().split(" # ");
-        String[] timesPerHall = data[11].trim().split(" ## ");
-        String[] costsPerHall = data[12].trim().split(" # ");
+        String[] hallPrefix = data[10].trim().split(", ");
+        String[] datesPerHall = data[11].trim().split(" # ");
+        String[] timesPerHall = data[12].trim().split(" ## ");
+        String[] costsPerHall = data[13].trim().split(" # ");
         cinemaHalls = new CinemaHall[halls.length];
         for (int i = 0; i < halls.length; i++)
         {
             String[] hallData = halls[i].trim().split(" # ");
             cinemaHalls[i] = new CinemaHall(
                     hallData[0].trim(),
+                    hallPrefix[i],
                     datesPerHall[i],
                     timesPerHall[i],
                     hallData[1].trim().split("\\."),

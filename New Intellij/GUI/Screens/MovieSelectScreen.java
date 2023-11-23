@@ -1,11 +1,12 @@
 package GUI.Screens;
 
-import GUI.*;
 import GUI.Button;
 import GUI.Label;
 import GUI.ScrollPane;
 import GUI.Window;
+import GUI.*;
 import Managers.BookingManager;
+import Managers.GuiAppManager;
 import Utilities.Movie;
 import Utilities.Visuals;
 
@@ -14,6 +15,7 @@ import java.awt.*;
 
 public class MovieSelectScreen extends Screen
 {
+    JPanel moviesPanel;
     public MovieSelectScreen()
     {
         super();
@@ -24,7 +26,7 @@ public class MovieSelectScreen extends Screen
                 Visuals.Colors.TEXT_NORMAL,
                 Visuals.Fonts.HEADING_FONT
         );
-        JPanel moviesPanel = new JPanel();
+        moviesPanel = new JPanel();
         ScrollPane moviesScrollPane = new ScrollPane(
                 moviesPanel,
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -56,27 +58,35 @@ public class MovieSelectScreen extends Screen
                 ((Window) SwingUtilities.getWindowAncestor(this)).openScreen("Main")
         );
 
-        int x = 0, y = 0;
-        for (Movie movie : BookingManager.Movies)
-        {
-            Button movieButton = new Button(movie.name, new Dimension(255, 330));
-            movieButton.setFont(Visuals.Fonts.NORMAL_FONT);
-            movieButton.setIcon(new ImageIcon(movie.thumbnailPath));
-            movieButton.setVerticalTextPosition(Button.BOTTOM);
-            movieButton.setHorizontalTextPosition(Button.CENTER);
-            movieButton.addActionListener(e ->
-                    ((Window) SwingUtilities.getWindowAncestor(this)).openScreen(movie.name)
-            );
-            moviesPanel.add(movieButton, new GridBagSettings(x, y, new Insets(2, 2, 2, 2)));
-            x++;
-            if (x % 5 == 0 && x != 0)
-            { y++; x = 0; }
-        }
-
+        PopulateMovies();
 
         setName("Movie Select");
         add(headingLabel, headingLabelConstraints);
         add(moviesScrollPane, moviesPanelConstraints);
         add(returnButton, returnButtonConstraints);
+    }
+
+    public void PopulateMovies()
+    {
+        moviesPanel.removeAll();
+
+        int x = 0, y = 0;
+        for (Movie movie : BookingManager.Movies)
+        {
+            if (!BookingManager.AreSeatsAvailableFor(movie)) continue;
+            Button movieButton = new Button(movie.name, new Dimension(255, 330));
+            movieButton.setFont(Visuals.Fonts.NORMAL_FONT);
+            movieButton.setIcon(new ImageIcon(movie.thumbnailPath));
+            movieButton.setVerticalTextPosition(Button.BOTTOM);
+            movieButton.setHorizontalTextPosition(Button.CENTER);
+            movieButton.addActionListener(e -> {
+                ((Window) SwingUtilities.getWindowAncestor(this)).openScreen(movie.name);
+                for (MovieDetailsScreen detailsScreen : GuiAppManager.movieDetailsScreens) detailsScreen.Refresh();
+            });
+            moviesPanel.add(movieButton, new GridBagSettings(x, y, new Insets(2, 2, 2, 2)));
+            x++;
+            if (x % 5 == 0 && x != 0)
+            { y++; x = 0; }
+        }
     }
 }

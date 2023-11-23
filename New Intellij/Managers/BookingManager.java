@@ -26,21 +26,33 @@ public class BookingManager
             Movies[i++] = new Movie(data.trim().split("\\r?\\n"));
     }
 
-    public static int[] BookSeats(Movie movie, CinemaHall hall, Date date, int timeIndex, ArrayList<Integer> seats,
-                                  int[] ticketsPerSection)
+    public static int[] CalculateCosts(Movie movie, CinemaHall hall, Date date, int timeIndex, ArrayList<Integer> seats,
+                                       int[] ticketsPerSection)
     {
-//        int baseCost =
-        int[] returns = {  };
+        int frontRowCost = hall.frontRowCost * ticketsPerSection[0];
+        int normalRowCost = hall.normalRowCost * ticketsPerSection[1];
+        int premiumRowCost = hall.premiumRowCost * ticketsPerSection[2];
+        int baseCost = frontRowCost + normalRowCost + premiumRowCost;
+        int cgst = (int) (baseCost * CGST_PERCENTAGE / 100f);
+        int sgst = (int) (baseCost * SGST_PERCENTAGE / 100f);
+        int convenienceFee = (int) (baseCost * CONVENIENCE_FEE_PERCENTAGE / 100f);
+        int totalFee = baseCost + cgst + sgst + convenienceFee;
 
+        return new int[]{ frontRowCost, normalRowCost, premiumRowCost, baseCost, cgst, sgst, convenienceFee, totalFee };
+    }
+
+    public static void RegisterSeats(Movie movie, CinemaHall hall, Date date, int timeIndex, ArrayList<Integer> seats)
+    {
         Path path = Path.of(DataManager.SEATS_ARRANGEMENT_PATH + movie.name + "/" +
-                            hall.name + "/" +
-                            date.date + "/" +
-                            date.times[timeIndex].replace(":", "_") + ".txt");
+                hall.name + "/" +
+                date.date + "/" +
+                date.times[timeIndex].replace(":", "_") + ".txt");
         for (Integer seat : seats)
         {
+            System.out.println(seat.toString());
             try
             {
-                Files.writeString(path, seat.toString(), StandardOpenOption.APPEND);
+                Files.writeString(path, seat.toString() + "\n", StandardOpenOption.APPEND);
             }
             catch (Exception e)
             {
@@ -48,8 +60,15 @@ public class BookingManager
                 System.exit(0);
             }
         }
+    }
 
-        return returns;
+    public static boolean AreSeatsAvailableFor(Movie movie)
+    {
+        int k = 0;
+        for (int i = 0; i < movie.cinemaHalls.length; i++)
+            if (!AreSeatsAvailableIn(movie, movie.cinemaHalls[i])) k++;
+
+        return k < movie.cinemaHalls.length;
     }
 
     public static boolean AreSeatsAvailableIn(Movie movie, CinemaHall hall)

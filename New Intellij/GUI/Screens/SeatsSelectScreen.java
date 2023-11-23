@@ -5,6 +5,7 @@ import GUI.GridBagSettings;
 import GUI.Label;
 import GUI.Screen;
 import GUI.Window;
+import Managers.AccountsManager;
 import Managers.GuiAppManager;
 import Utilities.CinemaHall;
 import Utilities.Date;
@@ -20,6 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class SeatsSelectScreen extends Screen
 {
+    private final Label headingLabel;
     private final JPanel seatButtonPanel;
     private final Button returnButton;
     private final Button confirmButton;
@@ -31,7 +33,7 @@ public class SeatsSelectScreen extends Screen
         window = _window;
 
         // Components
-        Label headingLabel = new Label(
+        headingLabel = new Label(
                 "Book your seats: ",
                 Visuals.Colors.TEXT_NORMAL,
                 Visuals.Fonts.HEADING_FONT
@@ -93,6 +95,9 @@ public class SeatsSelectScreen extends Screen
 
     public void PopulateSeats(Movie movie, CinemaHall hall, Date date, int timeIndex)
     {
+        headingLabel.setText("Choose your seats, " +
+                AccountsManager.currentAccount.holderName.trim().split(" ")[0] + ":");
+
         ArrayList<Integer> seatsToBook = new ArrayList<>();
         AtomicInteger frontSeats = new AtomicInteger();
         AtomicInteger normalSeats = new AtomicInteger();
@@ -100,8 +105,13 @@ public class SeatsSelectScreen extends Screen
         AtomicBoolean isConfirmListenerAdded = new AtomicBoolean(false);
         ActionListener confirmButtonListener = e -> {
             if (seatsToBook.size() > 0 && seatsToBook.size() <= 15)
+            {
                 GuiAppManager.BookTickets(seatsToBook,
                         new int[] {frontSeats.get(), normalSeats.get(), premiumSeats.get()});
+                seatsToBook.clear();
+                confirmButton.setDisabled();
+                confirmButton.setText("Minimum 1 Seat Should Be Selected");
+            }
         };
         returnButton.addActionListener(e -> window.openScreen(movie.name));
         seatButtonPanel.removeAll();
@@ -121,9 +131,12 @@ public class SeatsSelectScreen extends Screen
         premiumRowPanel.setLayout(new GridLayout(hall.premiumRows, hall.columns));
         premiumRowPanel.setOpaque(false);
 
-        Label frontRowLabel = new Label("Front Rows", Visuals.Colors.TEXT_NORMAL, Visuals.Fonts.NORMAL_FONT);
-        Label normalRowLabel = new Label("Normal Rows", Visuals.Colors.TEXT_NORMAL, Visuals.Fonts.NORMAL_FONT);
-        Label premiumRowLabel = new Label("Premium Rows", Visuals.Colors.TEXT_NORMAL, Visuals.Fonts.NORMAL_FONT);
+        Label frontRowLabel = new Label("Front Rows (Rs." + hall.frontRowCost + ")",
+                Visuals.Colors.TEXT_NORMAL, Visuals.Fonts.NORMAL_FONT);
+        Label normalRowLabel = new Label("Normal Rows (Rs." + hall.normalRowCost+ ")",
+                Visuals.Colors.TEXT_NORMAL, Visuals.Fonts.NORMAL_FONT);
+        Label premiumRowLabel = new Label("Premium Rows (Rs." + hall.premiumRowCost + ")",
+                Visuals.Colors.TEXT_NORMAL, Visuals.Fonts.NORMAL_FONT);
 
         seatButtonPanel.add(frontRowLabel, new GridBagSettings(0, 0, 1, 0,
                 GridBagSettings.HORIZONTAL, new Insets(0, 0, 5, 0)));
@@ -157,13 +170,13 @@ public class SeatsSelectScreen extends Screen
                     {
                         seatsToBook.remove((Integer) frontRow[finalI][finalJ]);
                         button.setNormal();
-                        frontSeats.getAndIncrement();
+                        frontSeats.getAndDecrement();
                     }
                     else
                     {
                         seatsToBook.add(frontRow[finalI][finalJ]);
                         button.setSelected();
-                        frontSeats.getAndDecrement();
+                        frontSeats.getAndIncrement();
                     }
                     if (seatsToBook.size() == 0)
                     {
@@ -210,13 +223,13 @@ public class SeatsSelectScreen extends Screen
                     {
                         seatsToBook.remove((Integer) normalRow[finalI][finalJ]);
                         button.setNormal();
-                        normalSeats.getAndIncrement();
+                        normalSeats.getAndDecrement();
                     }
                     else
                     {
                         seatsToBook.add(normalRow[finalI][finalJ]);
                         button.setSelected();
-                        normalSeats.getAndDecrement();
+                        normalSeats.getAndIncrement();
                     }
                     if (seatsToBook.size() == 0)
                     {
@@ -263,13 +276,13 @@ public class SeatsSelectScreen extends Screen
                     {
                         seatsToBook.remove((Integer) premiumRow[finalI][finalJ]);
                         button.setNormal();
-                        premiumSeats.getAndIncrement();
+                        premiumSeats.getAndDecrement();
                     }
                     else
                     {
                         seatsToBook.add(premiumRow[finalI][finalJ]);
                         button.setSelected();
-                        premiumSeats.getAndDecrement();
+                        premiumSeats.getAndIncrement();
                     }
                     if (seatsToBook.size() == 0)
                     {

@@ -1,9 +1,11 @@
 package GUI.Screens;
 
-import GUI.*;
 import GUI.Button;
+import GUI.GridBagSettings;
 import GUI.Label;
+import GUI.Screen;
 import GUI.Window;
+import Managers.GuiAppManager;
 import Utilities.Visuals;
 
 import javax.swing.*;
@@ -47,9 +49,10 @@ public class MainScreen extends Screen
         titleLabel.setIcon(logo);
         titleLabel.setHorizontalTextPosition(Label.LEFT);
         subTitleLabel.setVerticalAlignment(JLabel.TOP);
-        promptButton.addActionListener(e ->
-                ((Window) SwingUtilities.getWindowAncestor(this)).openScreen("Movie Select")
-        );
+        promptButton.addActionListener(e -> {
+            ((Window) SwingUtilities.getWindowAncestor(this)).openScreen("Movie Select");
+            GuiAppManager.movieSelectScreen.PopulateMovies();
+        });
 
         setName("Main");
         add(titleLabel, titleLabelConstraints);

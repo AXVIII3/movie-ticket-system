@@ -1,6 +1,7 @@
 package Managers;
 
 import GUI.Dialogs.AuthenticateDialog;
+import GUI.Dialogs.TotalCostDialog;
 import GUI.Screens.*;
 import GUI.Window;
 import Utilities.CinemaHall;
@@ -17,17 +18,26 @@ public class GuiAppManager
     public static CinemaHall cinemaHall;
     public static Date date;
     public static int timeIndex;
+    public static ArrayList<Integer> seatsToBook = new ArrayList<>();
+    public static ArrayList<MovieDetailsScreen> movieDetailsScreens = new ArrayList<>();
 
+    public static MovieSelectScreen movieSelectScreen;
     private static SeatsSelectScreen seatSelectScreen;
+    private static BookingDetailsScreen bookingDetailsScreen;
 
     public static void Initialize()
     {
         window = new Window();
         window.addScreen(new MainScreen());
-        window.addScreen(new MovieSelectScreen());
-        for (Movie movie : BookingManager.Movies) window.addScreen(new MovieDetailsScreen(movie));
-        seatSelectScreen = new SeatsSelectScreen(window);
-        window.addScreen(seatSelectScreen);
+        window.addScreen(movieSelectScreen = new MovieSelectScreen());
+        for (Movie movie : BookingManager.Movies)
+        {
+            MovieDetailsScreen movieDetailsScreen = new MovieDetailsScreen(movie);
+            movieDetailsScreens.add(movieDetailsScreen);
+            window.addScreen(movieDetailsScreen);
+        }
+        window.addScreen(seatSelectScreen = new SeatsSelectScreen(window));
+        window.addScreen(bookingDetailsScreen = new BookingDetailsScreen());
         window.addScreen(new EmptyScreen());
     }
 
@@ -53,6 +63,7 @@ public class GuiAppManager
                 timeIndex = i;
             }
         }
+        seatsToBook.clear();
     }
 
     public static void StartGUI()
@@ -79,6 +90,18 @@ public class GuiAppManager
 
     public static void BookTickets(ArrayList<Integer> seats, int[] ticketsPerSection)
     {
-        for (Integer seat : seats) System.out.println(seat.toString());
+        seatsToBook.clear();
+        seatsToBook.addAll(seats);
+        int[] costData = BookingManager.CalculateCosts(movie, cinemaHall, date, timeIndex, seats, ticketsPerSection);
+        window.openScreen("Empty Screen");
+        new TotalCostDialog(window, ticketsPerSection, costData);
+    }
+
+    public static void EndBooking()
+    {
+        BookingManager.RegisterSeats(movie, cinemaHall, date, timeIndex, seatsToBook);
+        for (MovieDetailsScreen detailsScreen : movieDetailsScreens) detailsScreen.Refresh();
+        movieSelectScreen.PopulateMovies();
+        window.openScreen("Booking Details");
     }
 }

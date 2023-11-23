@@ -2,8 +2,8 @@ package GUI.Screens;
 
 import GUI.Button;
 import GUI.Label;
-import GUI.Window;
 import GUI.*;
+import GUI.Window;
 import Managers.BookingManager;
 import Managers.GuiAppManager;
 import Utilities.CinemaHall;
@@ -17,9 +17,14 @@ import java.util.Objects;
 
 public class MovieDetailsScreen extends Screen
 {
-    public MovieDetailsScreen(Movie movie)
+    ComboBox<String> datesComboBox = new ComboBox<>();
+    ComboBox<String> timesComboBox = new ComboBox<>();
+    ComboBox<String> hallsComboBox = new ComboBox<>();
+    Movie movie;
+    public MovieDetailsScreen(Movie _movie)
     {
         super();
+        movie = _movie;
 
         // Components
         Label headingLabel = new Label(
@@ -42,9 +47,6 @@ public class MovieDetailsScreen extends Screen
                 "Book Tickets",
                 new Dimension(350, 50)
         );
-        ComboBox<String> datesComboBox = new ComboBox<>();
-        ComboBox<String> timesComboBox = new ComboBox<>();
-        ComboBox<String> hallsComboBox = new ComboBox<>();
 
         // Detail Labels
         Label nameLabel = new Label(movie.name + movie.tagline, Visuals.Colors.TEXT_NORMAL,
@@ -147,32 +149,25 @@ public class MovieDetailsScreen extends Screen
         posterLabel.setIcon(new ImageIcon(movie.posterPath));
 
         // Populating Combo Boxes
-        for (CinemaHall hall : movie.cinemaHalls)
-            if (BookingManager.AreSeatsAvailableIn(movie, hall))
-                hallsComboBox.addItem("   " + hall.name);
-        hallsComboBox.setSelectedIndex(0);
-        PopulateDatesComboBox(movie, (String) hallsComboBox.getSelectedItem(), datesComboBox);
-        PopulateTimesComboBox(movie, (String) hallsComboBox.getSelectedItem(), (String) datesComboBox.getSelectedItem(),
-                timesComboBox);
+        PopulateHallsComboBox();
+        PopulateDatesComboBox();
+        PopulateTimesComboBox();
 
         // Action Listeners
         hallsComboBox.addActionListener(e -> {
             if (hallsComboBox.getSelectedItem() != null)
-            {
-                PopulateDatesComboBox(movie, (String) hallsComboBox.getSelectedItem(), datesComboBox);
-            }
+                PopulateDatesComboBox();
         });
         datesComboBox.addActionListener(e -> {
             if (datesComboBox.getSelectedItem() != null)
-            {
-                PopulateTimesComboBox(movie, (String) hallsComboBox.getSelectedItem(),
-                        (String) datesComboBox.getSelectedItem(), timesComboBox);
-            }
+                PopulateTimesComboBox();
         });
-        returnButton.addActionListener(e ->
-                ((Window) SwingUtilities.getWindowAncestor(this)).openScreen("Movie Select")
-        );
+        returnButton.addActionListener(e -> {
+            ((Window) SwingUtilities.getWindowAncestor(this)).openScreen("Movie Select");
+            GuiAppManager.movieSelectScreen.PopulateMovies();
+        });
         bookButton.addActionListener(e -> {
+            if (hallsComboBox.getItemCount() <= 0) return;
             GuiAppManager.SetData(
                     movie,
                     ((String) Objects.requireNonNull(hallsComboBox.getSelectedItem())).trim(),
@@ -219,29 +214,54 @@ public class MovieDetailsScreen extends Screen
         add(buttonsPanel, buttonsPanelConstraints);
     }
 
-    public void PopulateDatesComboBox(Movie movie, String cinemaHallName, ComboBox<String> comboBox)
+    public void Refresh()
     {
+        PopulateHallsComboBox();
+        PopulateDatesComboBox();
+        PopulateTimesComboBox();
+    }
+
+    public void PopulateHallsComboBox()
+    {
+        hallsComboBox.removeAllItems();
+        for (CinemaHall hall : movie.cinemaHalls)
+            if (BookingManager.AreSeatsAvailableIn(movie, hall))
+                hallsComboBox.addItem("   " + hall.name);
+        if (hallsComboBox.getItemCount() > 0) hallsComboBox.setSelectedIndex(0);
+    }
+
+    public void PopulateDatesComboBox()
+    {
+        if (hallsComboBox.getItemCount() <= 0)
+        {
+            datesComboBox.removeAllItems();
+            return;
+        }
         CinemaHall cinemaHall = null;
         for (CinemaHall _hall : movie.cinemaHalls)
-            if (cinemaHallName.trim().equals(_hall.name))
+            if (((String) hallsComboBox.getSelectedItem()).trim().equals(_hall.name))
             {
                 cinemaHall = _hall;
                 break;
             }
 
-        comboBox.removeAllItems();
+        datesComboBox.removeAllItems();
         for (Date date : cinemaHall.dates)
-        {
-            comboBox.addItem("   " + date.date);
-        }
-        comboBox.setSelectedIndex(0);
+            if (BookingManager.AreSeatsAvailableOn(movie, cinemaHall, date))
+                datesComboBox.addItem("   " + date.date);
+        if (datesComboBox.getItemCount() > 0) datesComboBox.setSelectedIndex(0);
     }
 
-    public void PopulateTimesComboBox(Movie movie, String cinemaHallName, String selectedDate, ComboBox<String> comboBox)
+    public void PopulateTimesComboBox()
     {
+        if (hallsComboBox.getItemCount() <= 0)
+        {
+            timesComboBox.removeAllItems();
+            return;
+        }
         CinemaHall cinemaHall = null;
         for (CinemaHall _hall : movie.cinemaHalls)
-            if (cinemaHallName.trim().equals(_hall.name))
+            if (((String) hallsComboBox.getSelectedItem()).trim().equals(_hall.name))
             {
                 cinemaHall = _hall;
                 break;
@@ -249,15 +269,17 @@ public class MovieDetailsScreen extends Screen
 
         Date date = null;
         for (Date _date : cinemaHall.dates)
-            if (selectedDate.trim().equals(_date.date))
+            if (((String) datesComboBox.getSelectedItem()).trim().equals(_date.date))
             {
                 date = _date;
                 break;
             }
 
-        comboBox.removeAllItems();
+        timesComboBox.removeAllItems();
+        int i = 0;
         for (String time : date.times)
-            comboBox.addItem("   " + time);
-        comboBox.setSelectedIndex(0);
+            if (BookingManager.AreSeatsAvailableAt(movie, cinemaHall, date, i++))
+                timesComboBox.addItem("   " + time);
+        if (timesComboBox.getItemCount() > 0) timesComboBox.setSelectedIndex(0);
     }
 }

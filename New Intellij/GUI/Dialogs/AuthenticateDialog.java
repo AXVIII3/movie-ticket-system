@@ -95,7 +95,7 @@ public class AuthenticateDialog extends JDialog
                 if (AccountsManager.IsAccountRegistered(emailTextField.getText()))
                 {
                     setLocation(getLocation().x, getLocation().y - 20);
-                    setSize(400, 307);
+                    setSize(400, 320);
                     add(loginPanel);
                     loginPanel.add(emailLabel, new GridBagSettings(0, 2, 1, 0,
                             GridBagSettings.HORIZONTAL, new Insets(0, 10, 0, 10)));
@@ -109,7 +109,7 @@ public class AuthenticateDialog extends JDialog
                 else
                 {
                     setLocation(getLocation().x, getLocation().y - 75);
-                    setSize(400, 430);
+                    setSize(400, 440);
                     add(registerPanel);
                     registerPanel.add(emailLabel, new GridBagSettings(0, 4, 1, 0,
                             GridBagSettings.HORIZONTAL, new Insets(0, 10, 0, 10)));
@@ -132,7 +132,7 @@ public class AuthenticateDialog extends JDialog
                 remove(registerPanel);
                 loginNotifyLabel.setText("Account with email already exists! Login Instead");
                 setLocation(getLocation().x, getLocation().y + 50);
-                setSize(400, 320);
+                setSize(400, 330);
                 add(loginPanel);
                 loginPanel.add(emailLabel, new GridBagSettings(0, 2, 1, 0,
                         GridBagSettings.HORIZONTAL, new Insets(0, 10, 0, 10)));
@@ -155,18 +155,18 @@ public class AuthenticateDialog extends JDialog
                 {
                     nameTextField.setText("Enter your actual name here");
                 }
-                else if (Arrays.toString(passwordTextField.getPassword()).trim().isBlank() ||
-                        Arrays.toString(passwordTextField.getPassword()).trim().isEmpty())
+                else if (new String(passwordTextField.getPassword()).trim().isBlank() ||
+                        new String(passwordTextField.getPassword()).trim().isEmpty())
                 {
-                    if (getSize().height != 430) setLocation(getLocation().x, getLocation().y - 7);
-                    setSize(400, 440);
+                    if (getSize().height != 450) setLocation(getLocation().x, getLocation().y - 7);
+                    setSize(400, 450);
                     registerNotifyLabel.setText("Password field is blank");
                 }
-                else if (Arrays.toString(confirmPasswordTextField.getPassword()).trim().isBlank() ||
-                        Arrays.toString(confirmPasswordTextField.getPassword()).trim().isEmpty())
+                else if (new String(confirmPasswordTextField.getPassword()).trim().isBlank() ||
+                        new String(confirmPasswordTextField.getPassword()).trim().isEmpty())
                 {
-                    if (getSize().height != 430) setLocation(getLocation().x, getLocation().y - 7);
-                    setSize(400, 440);
+                    if (getSize().height != 450) setLocation(getLocation().x, getLocation().y - 7);
+                    setSize(400, 450);
                     registerNotifyLabel.setText("Confirm Password field is blank");
                 }
                 else if (Arrays.toString(passwordTextField.getPassword()).trim().equals(
@@ -179,8 +179,8 @@ public class AuthenticateDialog extends JDialog
                 }
                 else
                 {
-                    if (getSize().height != 430) setLocation(getLocation().x, getLocation().y - 7);
-                    setSize(400, 440);
+                    if (getSize().height != 450) setLocation(getLocation().x, getLocation().y - 7);
+                    setSize(400, 450);
                     registerNotifyLabel.setText("Password and Confirm Password do not match!");
                 }
             }
@@ -193,7 +193,7 @@ public class AuthenticateDialog extends JDialog
                 remove(loginPanel);
                 registerNotifyLabel.setText("Account with email doesn't exists! Register Instead");
                 setLocation(getLocation().x, getLocation().y - 50);
-                setSize(400, 440);
+                setSize(400, 450);
                 add(registerPanel);
                 registerPanel.add(emailLabel, new GridBagSettings(0, 4, 1, 0,
                         GridBagSettings.HORIZONTAL, new Insets(0, 10, 0, 10)));
@@ -208,7 +208,15 @@ public class AuthenticateDialog extends JDialog
             }
             else
             {
-                if (AccountsManager.Login(emailTextField.getText(), passwordTextField.getText()))
+                if (new String(passwordTextField.getPassword()).trim().trim().isBlank() ||
+                        new String(passwordTextField.getPassword()).trim().trim().isEmpty())
+                {
+                    if (getSize().height != 330) setLocation(getLocation().x, getLocation().y - 5);
+                    setSize(400, 330);
+                    loginNotifyLabel.setText("Password Field is Blank");
+                }
+                else if (AccountsManager.Login(emailTextField.getText(),
+                        new String(passwordTextField.getPassword()).trim()))
                 {
                     GuiAppManager.StartBooking();
                     isAuthenticated.set(true);
@@ -217,7 +225,7 @@ public class AuthenticateDialog extends JDialog
                 else
                 {
                     if (getSize().height != 320) setLocation(getLocation().x, getLocation().y - 5);
-                    setSize(400, 320);
+                    setSize(400, 330);
                     loginNotifyLabel.setText("Incorrect Password!");
                 }
             }
@@ -233,14 +241,14 @@ public class AuthenticateDialog extends JDialog
                 GridBagSettings.HORIZONTAL, new Insets(0, 10, 0, 10)));
 
         loginPanel.add(loginLabel, new GridBagSettings(0, 0, 1, 0,
-                GridBagSettings.HORIZONTAL, new Insets(0, 10, 0, 10)));
+                GridBagSettings.HORIZONTAL, new Insets(10, 10, 0, 10)));
         loginPanel.add(loginNotifyLabel, new GridBagSettings(0, 1, 1, 0,
                 GridBagSettings.HORIZONTAL, new Insets(0, 10, 34, 10)));
         loginPanel.add(loginButton, new GridBagSettings(0, 6, 1, 0,
-                GridBagSettings.HORIZONTAL, new Insets(0, 10, 0, 10)));
+                GridBagSettings.HORIZONTAL, new Insets(0, 10, 10, 10)));
 
         registerPanel.add(registerLabel, new GridBagSettings(0, 0, 1, 0,
-                GridBagSettings.HORIZONTAL, new Insets(0, 10, 0, 10)));
+                GridBagSettings.HORIZONTAL, new Insets(10, 10, 0, 10)));
         registerPanel.add(registerNotifyLabel, new GridBagSettings(0, 1, 1, 0,
                 GridBagSettings.HORIZONTAL, new Insets(0, 10, 25, 10)));
         registerPanel.add(nameLabel, new GridBagSettings(0, 2, 1, 0,
@@ -252,7 +260,7 @@ public class AuthenticateDialog extends JDialog
         registerPanel.add(confirmPasswordTextField, new GridBagSettings(0, 9, 1, 0,
                 GridBagSettings.HORIZONTAL, new Insets(0, 10, 27, 10)));
         registerPanel.add(registerButton, new GridBagSettings(0, 10, 1, 0,
-                GridBagSettings.HORIZONTAL, new Insets(0, 10, 0, 10)));
+                GridBagSettings.HORIZONTAL, new Insets(0, 10, 10, 10)));
 
         add(mainPanel);
         setVisible(true);

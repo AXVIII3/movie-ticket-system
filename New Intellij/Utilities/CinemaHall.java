@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class CinemaHall
 {
     public String name;
+    public String roomPrefix;
     public Date[] dates;
     public int frontRowCost;
     public int normalRowCost;
@@ -18,9 +19,10 @@ public class CinemaHall
 
     public int TotalSeats() { return (frontRows + normalRows + premiumRows) * columns; }
 
-    public CinemaHall(String _name, String _dates, String _times, String[] _rows, int _cols, String[] costs)
+    public CinemaHall(String _name, String _prefix, String _dates, String _times, String[] _rows, int _cols, String[] costs)
     {
         name = _name;
+        roomPrefix = _prefix;
         String[] dts = _dates.trim().split(", ");
         String[] timesPerDate = _times.split(" # ");
         dates = new Date[dts.length];
@@ -55,7 +57,7 @@ public class CinemaHall
         ArrayList<Integer> bookedSeats = BookingManager.GetBookedSeats(movie, this, date, timeIndex);
         int[][] seats = new int[normalRows][columns];
 
-        int k = frontRows * columns;
+        int k = frontRows * columns + 1;
         for (int i = 0; i < normalRows; i++)
         {
             for (int j = 0; j < columns; j++, k++)
@@ -70,7 +72,7 @@ public class CinemaHall
         ArrayList<Integer> bookedSeats = BookingManager.GetBookedSeats(movie, this, date, timeIndex);
         int[][] seats = new int[premiumRows][columns];
 
-        int k = (frontRows + normalRows) * columns;
+        int k = (frontRows + normalRows) * columns + 1;
         for (int i = 0; i < premiumRows; i++)
         {
             for (int j = 0; j < columns; j++, k++)

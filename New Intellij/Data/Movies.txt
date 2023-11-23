@@ -8,6 +8,7 @@ Historic Drama
 2022
 3h
 Cinepolis # 3.4.2 # 16, INOX # 3.5.2 # 20, Navina # 2.5.3 # 15
+AUDI, Screen, Hall
 25th November, 26th November # 25th November, 26th November # 25th November, 26th November
 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
 320, 360, 400 # 320, 360, 400 # 320, 360, 400
@@ -22,6 +23,7 @@ Action Adventure
 2022
 2h 37m
 Cinepolis # 3.4.2 # 16, INOX # 3.5.2 # 20, Navina # 2.5.3 # 15
+AUDI, Screen, Hall
 25th November, 27th November, 28th November # 25th November, 26th November # 25th November, 26th November
 12:30pm, 9:30pm # 1:00pm # 9:00pm ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
 320, 360, 400 # 320, 360, 400 # 320, 360, 400
@@ -36,6 +38,7 @@ Action Fantasy
 2022
 1h 45m
 Cinepolis # 3.4.2 # 16, INOX # 3.5.2 # 20, Navina # 2.5.3 # 15
+AUDI, Screen, Hall
 27th November, 28th November # 25th November, 26th November # 25th November, 26th November
 9:00am, 6:00pm # 7:00am ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
 320, 360, 400 # 320, 360, 400 # 320, 360, 400
@@ -50,6 +53,7 @@ Animated Action Adventure
 2022
 2h 20m
 Cinepolis # 3.4.2 # 16, INOX # 3.5.2 # 20, Navina # 2.5.3 # 15
+AUDI, Screen, Hall
 25th November, 28th November # 25th November, 26th November # 25th November, 26th November
 1:30pm, 7:00pm, 9:00pm # 4:00pm, 12:10am ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
 320, 360, 400 # 320, 360, 400 # 320, 360, 400
@@ -64,6 +68,7 @@ Action Drama
 2022
 2h 10m
 Cinepolis # 3.4.2 # 16, INOX # 3.5.2 # 20, Navina # 2.5.3 # 15
+AUDI, Screen, Hall
 26th November, 30th November, 1st December # 25th November, 26th November # 25th November, 26th November
 12:30pm, 9:00pm # 9:00pm # 10:00pm ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
 320, 360, 400 # 320, 360, 400 # 320, 360, 400
@@ -78,6 +83,7 @@ Thrilling Action Adventure
 2022
 2h 43min
 Cinepolis # 3.4.2 # 16, INOX # 3.5.2 # 20, Navina # 2.5.3 # 15
+AUDI, Screen, Hall
 30th November, 1st December # 25th November, 26th November # 25th November, 26th November
 1:30pm, 7:00pm, 9:00pm # 7:00am, 6:00am ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
 320, 360, 400 # 320, 360, 400 # 320, 360, 400
@@ -92,6 +98,7 @@ Fantasy Comedic Adventure
 2022
 1h 54m
 Cinepolis # 3.4.2 # 16, INOX # 3.5.2 # 20, Navina # 2.5.3 # 15
+AUDI, Screen, Hall
 28th November, 30th November, 1st December # 25th November, 26th November # 25th November, 26th November
 2:00pm, 12:00am # 8:30am, 7:20pm # 8:30am, 7:20pm ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
 320, 360, 400 # 320, 360, 400 # 320, 360, 400
@@ -106,6 +113,7 @@ Thrilling Action Crime
 2022
 2h 49m
 Cinepolis # 3.4.2 # 16, INOX # 3.5.2 # 20, Navina # 2.5.3 # 15
+AUDI, Screen, Hall
 27th November, 28th November, 1st December # 25th November, 26th November # 25th November, 26th November
 8:30am, 7:20pm # 2:00pm, 12:00am # 9:00pm ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
 320, 360, 400 # 320, 360, 400 # 320, 360, 400
@@ -120,6 +128,7 @@ Action Drama
 2022
 2h 56m
 Cinepolis # 3.4.2 # 16, INOX # 3.5.2 # 20, Navina # 2.5.3 # 15
+AUDI, Screen, Hall
 29th November, 30th November # 25th November, 26th November # 25th November, 26th November
 1:30pm, 7:00pm, 9:00pm # 7:00pm, 9:00pm ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
 320, 360, 400 # 320, 360, 400 # 320, 360, 400
