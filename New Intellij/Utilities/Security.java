@@ -1,11 +1,11 @@
 package Utilities;
 
-import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESedeKeySpec;
 import java.security.spec.KeySpec;
+import java.util.Base64;
 
 public class Security
 {

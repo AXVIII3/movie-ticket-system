@@ -2,8 +2,8 @@ package GUI.Screens;
 
 import GUI.Button;
 import GUI.Label;
-import GUI.*;
 import GUI.Window;
+import GUI.*;
 import Managers.BookingManager;
 import Managers.GuiAppManager;
 import Utilities.CinemaHall;
@@ -78,10 +78,7 @@ public class MovieDetailsScreen extends Screen
         JPanel emptySpace = new JPanel();
 
         // Layouts
-        GridBagLayout mainLayout = new GridBagLayout();
-        GridBagLayout movieDetailsPanelLayout = new GridBagLayout();
-        GridBagLayout movieDetailsTextLayout = new GridBagLayout();
-        GridBagLayout buttonPanelLayout = new GridBagLayout();
+        GridBagLayout layout = new GridBagLayout();
 
         // Layout Config
         GridBagSettings headingLabelConstraints = new GridBagSettings(0, 0, 1, 0,
@@ -131,10 +128,10 @@ public class MovieDetailsScreen extends Screen
                 GridBagSettings.BOTH, new Insets(0,0, 0, 0));
 
         // Other Configurations
-        setLayout(mainLayout);
-        movieDetailsPanel.setLayout(movieDetailsPanelLayout);
-        buttonsPanel.setLayout(buttonPanelLayout);
-        detailsPanel.setLayout(movieDetailsTextLayout);
+        setLayout(layout);
+        movieDetailsPanel.setLayout(layout);
+        buttonsPanel.setLayout(layout);
+        detailsPanel.setLayout(layout);
         datePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         timePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         hallsPanel.setLayout(new FlowLayout(FlowLayout.LEFT));

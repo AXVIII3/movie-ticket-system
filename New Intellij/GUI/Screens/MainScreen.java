@@ -1,10 +1,10 @@
 package GUI.Screens;
 
 import GUI.Button;
-import GUI.GridBagSettings;
 import GUI.Label;
-import GUI.Screen;
 import GUI.Window;
+import GUI.*;
+import Managers.AccountsManager;
 import Managers.GuiAppManager;
 import Utilities.Visuals;
 
@@ -13,6 +13,7 @@ import java.awt.*;
 
 public class MainScreen extends Screen
 {
+    Button auth_prevBook_button;
     public MainScreen()
     {
         super();
@@ -32,6 +33,10 @@ public class MainScreen extends Screen
                 "Start Booking Now!",
                 new Dimension(350, 50)
         );
+        auth_prevBook_button = new Button(
+                "Authenticate",
+                new Dimension(350, 50)
+        );
         ImageIcon logo = new ImageIcon("Assets/Branding/Logo.png");
 
         // Layouts
@@ -42,6 +47,8 @@ public class MainScreen extends Screen
         GridBagSettings subTitleLabelConstraints = new GridBagSettings(0, 1);
         GridBagSettings promptButtonConstraints = new GridBagSettings(0, 2,
                 new Insets(150, 0, 0, 0));
+        GridBagSettings authButtonConstraints = new GridBagSettings(0, 3,
+                new Insets(7, 0, 0, 0));
 
         // Other Configurations
         setLayout(mainLayout);
@@ -53,10 +60,29 @@ public class MainScreen extends Screen
             ((Window) SwingUtilities.getWindowAncestor(this)).openScreen("Movie Select");
             GuiAppManager.movieSelectScreen.PopulateMovies();
         });
+        auth_prevBook_button.addActionListener(e -> {
+            if (AccountsManager.currentAccount == null)
+            {
+                GuiAppManager.isMainPanelAuth = true;
+                GuiAppManager.StartAuthentication();
+            }
+            else
+            {
+                ((Window) SwingUtilities.getWindowAncestor(this)).openScreen("Previous Bookings");
+                GuiAppManager.previousBookingsScreen.PopulateBookings(AccountsManager.currentAccount);
+            }
+
+        });
 
         setName("Main");
         add(titleLabel, titleLabelConstraints);
         add(subTitleLabel, subTitleLabelConstraints);
         add(promptButton, promptButtonConstraints);
+        add(auth_prevBook_button, authButtonConstraints);
+    }
+
+    public void SwitchButtons()
+    {
+        auth_prevBook_button.setText("Previous Bookings");
     }
 }

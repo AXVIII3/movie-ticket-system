@@ -3,9 +3,11 @@ package Managers;
 import Utilities.Account;
 import Utilities.Security;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,9 +26,7 @@ public class AccountsManager
 
         int i = 0;
         for (String data : accountData)
-        {
             Accounts[i++] = new Account(data.trim().split("\\r?\\n"));
-        }
     }
 
     public static boolean IsAccountRegistered(String email)
@@ -62,14 +62,37 @@ public class AccountsManager
                     name.trim() + "\n" + email.trim() + "\n" + Security.encrypt(password.trim()) + "\n\n",
                     StandardOpenOption.APPEND);
             Initialize();
-            for (Account account : Accounts)
-                if (account.holderEmail.trim().equals(email.trim()) && account.holderPassword.trim().equals(password.trim()))
-                    currentAccount = account;
+            Login(email, password);
+            DataManager.InitializeAccountsData();
             GuiAppManager.StartBooking();
         }
         catch (Exception e)
         {
             System.out.println(e + "\nError Writing Account Details In " + path);
+            System.exit(0);
+        }
+    }
+
+    public static void AddBooking(String movie, String date, String time, String hall, ArrayList<Integer> seats)
+    {
+        Path path = Path.of(
+                DataManager.ACCOUNTS_DATA_PATH +
+                        currentAccount.holderEmail + "/" +
+                        movie + "#" + hall + "#" + date + "#" + time.replace(":", "_") + ".txt"
+        );
+        try
+        {
+            if (!new File(path.toUri()).exists()) new File(path.toUri()).createNewFile();
+            for (Integer seat : seats)
+            {
+                Files.writeString(path, seat.toString() + "\n", StandardOpenOption.APPEND);
+
+            }
+            currentAccount.GetPreviousBookings();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e + "\nError Writing Booked Seats In " + path);
             System.exit(0);
         }
     }

@@ -1,11 +1,11 @@
 package GUI.Dialogs;
 
-import GUI.GridBagSettings;
-import GUI.Label;
-import GUI.Screens.PasswordField;
-import GUI.TextField;
 import GUI.Button;
+import GUI.Label;
+import GUI.*;
+import GUI.TextField;
 import GUI.Window;
+import GUI.Screens.PasswordField;
 import Managers.AccountsManager;
 import Managers.GuiAppManager;
 import Utilities.Movie;
@@ -59,12 +59,20 @@ public class AuthenticateDialog extends JDialog
             @Override
             public void windowClosing(WindowEvent e)
             {
-                if (!isAuthenticated.get()) window.openScreen(movie.name);
+                if (!isAuthenticated.get())
+                {
+                    if (GuiAppManager.isMainPanelAuth) window.openScreen("Main");
+                    else window.openScreen(movie.name);
+                }
             }
             @Override
             public void windowClosed(WindowEvent e)
             {
-                if (!isAuthenticated.get()) window.openScreen(movie.name);
+                if (!isAuthenticated.get())
+                {
+                    if (GuiAppManager.isMainPanelAuth) window.openScreen("Main");
+                    else window.openScreen(movie.name);
+                }
             }
 
             @Override
@@ -173,7 +181,7 @@ public class AuthenticateDialog extends JDialog
                         Arrays.toString(confirmPasswordTextField.getPassword()).trim()))
                 {
                     AccountsManager.Register(nameTextField.getText(), emailTextField.getText(),
-                            Arrays.toString(passwordTextField.getPassword()));
+                            new String(passwordTextField.getPassword()));
                     isAuthenticated.set(true);
                     dispose();
                 }
@@ -224,7 +232,7 @@ public class AuthenticateDialog extends JDialog
                 }
                 else
                 {
-                    if (getSize().height != 320) setLocation(getLocation().x, getLocation().y - 5);
+                    if (getSize().height != 330) setLocation(getLocation().x, getLocation().y - 5);
                     setSize(400, 330);
                     loginNotifyLabel.setText("Incorrect Password!");
                 }

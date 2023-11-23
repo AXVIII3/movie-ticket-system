@@ -1,9 +1,6 @@
 package Managers;
 
-import Utilities.CinemaHall;
-import Utilities.Date;
-import Utilities.Movie;
-import Utilities.RandomSeatsFiller;
+import Utilities.*;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -15,8 +12,9 @@ public class DataManager
     private static final String MOVIES_DATA_PATH = "Data/Movies.txt";
     public static final String SEATS_ARRANGEMENT_PATH = "Data/Seating/";
     public static final String ACCOUNTS_FILE_PATH = "Data/Accounts.txt";
+    public static final String ACCOUNTS_DATA_PATH = "Data/AccountsData/";
 
-    public static void Initialize()
+    public static void InitializeMovieData()
     {
         try
         {
@@ -69,6 +67,25 @@ public class DataManager
         }
     }
 
+    public static void InitializeAccountsData()
+    {
+        try {
+            File accountDataPath = new File(ACCOUNTS_DATA_PATH);
+            if (!accountDataPath.exists()) accountDataPath.mkdir();
+
+            for (Account account : AccountsManager.Accounts) {
+                String accountDirPath = ACCOUNTS_DATA_PATH + account.holderEmail;
+                File accountDir = new File(accountDirPath);
+                if (!accountDir.exists()) accountDir.mkdir();
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e + "\nError Initializing Accounts Data!");
+            System.exit(0);
+        }
+    }
+
     public static String[] ProcessMovieData()
     {
         try
@@ -97,7 +114,7 @@ public class DataManager
         }
         catch (Exception e)
         {
-            System.out.println("Error Processing Accounts Data!");
+            System.out.println(e + "\nError Processing Accounts Data!");
             System.exit(0);
             return null;
         }

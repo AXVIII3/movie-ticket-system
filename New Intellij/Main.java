@@ -17,9 +17,10 @@ public class Main
     private static void Initialize()
     {
         BookingManager.Initialize();
-        DataManager.Initialize();
+        DataManager.InitializeMovieData();
         Security.Initialize();
         AccountsManager.Initialize();
+        DataManager.InitializeAccountsData();
         Visuals.Initialize();
         GuiAppManager.Initialize();
     }

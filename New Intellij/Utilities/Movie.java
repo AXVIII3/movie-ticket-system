@@ -4,6 +4,7 @@ public class Movie
 {
     private static final String THUMBNAIL_PATH = "Assets/Thumbnail/";
     private static final String POSTER_PATH = "Assets/Poster/";
+    private static final String TICKET_PATH = "Assets/Ticket/";
 
     public String name;
     public String tagline;
@@ -18,6 +19,7 @@ public class Movie
     public CinemaHall[] cinemaHalls;
     public String thumbnailPath;
     public String posterPath;
+    public String ticketPath;
 
     public Movie(String[] data)
     {
@@ -56,6 +58,7 @@ public class Movie
 
         thumbnailPath = THUMBNAIL_PATH + name + ".jpg";
         posterPath = POSTER_PATH + name + ".jpg";
+        ticketPath = TICKET_PATH + name + ".png";
     }
 
     public void DisplayDetails()

@@ -118,7 +118,6 @@ public class TotalCostDialog extends JDialog
             GuiAppManager.EndBooking();
             isConfirmed.set(true);
             dispose();
-            GuiAppManager.StartBooking();
         });
 
         perRowCostPanelL.add(new Label(

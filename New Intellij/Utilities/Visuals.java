@@ -15,6 +15,7 @@ public class Visuals
             Fonts.TITLE_FONT = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.BOLD, 70f);
             Fonts.SUBTITLE_FONT = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.BOLD, 35f);
             Fonts.HEADING_FONT = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.BOLD, 55f);
+            Fonts.HEADING_FONT_SMALLER = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.BOLD, 47f);
             Fonts.SUBHEADING_FONT = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.BOLD, 25f);
             Fonts.NORMAL_FONT = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.BOLD, 18f);
             Fonts.SMALL_FONT = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(Font.BOLD, 14f);
@@ -58,6 +59,7 @@ public class Visuals
         public static Font SUBTITLE_FONT;
 
         public static Font HEADING_FONT;
+        public static Font HEADING_FONT_SMALLER;
         public static Font SUBHEADING_FONT;
 
         public static Font NORMAL_FONT;

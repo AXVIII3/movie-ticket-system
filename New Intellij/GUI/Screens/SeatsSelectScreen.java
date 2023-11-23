@@ -1,12 +1,10 @@
 package GUI.Screens;
 
 import GUI.Button;
-import GUI.GridBagSettings;
 import GUI.Label;
-import GUI.Screen;
 import GUI.Window;
+import GUI.*;
 import Managers.AccountsManager;
-import Managers.GuiAppManager;
 import Utilities.CinemaHall;
 import Utilities.Date;
 import Utilities.Movie;
@@ -26,6 +24,7 @@ public class SeatsSelectScreen extends Screen
     private final Button returnButton;
     private final Button confirmButton;
     private final Window window;
+    private ActionListener actionListener;
 
     public SeatsSelectScreen(Window _window)
     {
@@ -103,16 +102,7 @@ public class SeatsSelectScreen extends Screen
         AtomicInteger normalSeats = new AtomicInteger();
         AtomicInteger premiumSeats = new AtomicInteger();
         AtomicBoolean isConfirmListenerAdded = new AtomicBoolean(false);
-        ActionListener confirmButtonListener = e -> {
-            if (seatsToBook.size() > 0 && seatsToBook.size() <= 15)
-            {
-                GuiAppManager.BookTickets(seatsToBook,
-                        new int[] {frontSeats.get(), normalSeats.get(), premiumSeats.get()});
-                seatsToBook.clear();
-                confirmButton.setDisabled();
-                confirmButton.setText("Minimum 1 Seat Should Be Selected");
-            }
-        };
+        ActionListener confirmButtonListener = actionListener;
         returnButton.addActionListener(e -> window.openScreen(movie.name));
         seatButtonPanel.removeAll();
 
@@ -185,12 +175,12 @@ public class SeatsSelectScreen extends Screen
                         isConfirmListenerAdded.set(false);
                         confirmButton.setText("Minimum 1 Seat Should Be Selected");
                     }
-                    else if (seatsToBook.size() > 15)
+                    else if (seatsToBook.size() > 10)
                     {
                         confirmButton.setDisabled();
                         if (isConfirmListenerAdded.get()) confirmButton.removeActionListener(confirmButtonListener);
                         isConfirmListenerAdded.set(false);
-                        confirmButton.setText("Maximum 15 Seats Can Be Selected");
+                        confirmButton.setText("Maximum 10 Seats Can Be Selected");
                     }
                     else
                     {
@@ -238,12 +228,12 @@ public class SeatsSelectScreen extends Screen
                         isConfirmListenerAdded.set(false);
                         confirmButton.setText("Minimum 1 Seat Should Be Selected");
                     }
-                    else if (seatsToBook.size() > 15)
+                    else if (seatsToBook.size() > 10)
                     {
                         confirmButton.setDisabled();
                         if (isConfirmListenerAdded.get()) confirmButton.removeActionListener(confirmButtonListener);
                         isConfirmListenerAdded.set(false);
-                        confirmButton.setText("Maximum 15 Seats Can Be Selected");
+                        confirmButton.setText("Maximum 10 Seats Can Be Selected");
                     }
                     else
                     {
@@ -291,12 +281,12 @@ public class SeatsSelectScreen extends Screen
                         isConfirmListenerAdded.set(false);
                         confirmButton.setText("Minimum 1 Seat Should Be Selected");
                     }
-                    else if (seatsToBook.size() > 15)
+                    else if (seatsToBook.size() > 10)
                     {
                         confirmButton.setDisabled();
                         if (isConfirmListenerAdded.get()) confirmButton.removeActionListener(confirmButtonListener);
                         isConfirmListenerAdded.set(false);
-                        confirmButton.setText("Maximum 15 Seats Can Be Selected");
+                        confirmButton.setText("Maximum 10 Seats Can Be Selected");
                     }
                     else
                     {

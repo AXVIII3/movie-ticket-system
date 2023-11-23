@@ -9,6 +9,7 @@ import Utilities.Date;
 import Utilities.Movie;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GuiAppManager
 {
@@ -21,14 +22,18 @@ public class GuiAppManager
     public static ArrayList<Integer> seatsToBook = new ArrayList<>();
     public static ArrayList<MovieDetailsScreen> movieDetailsScreens = new ArrayList<>();
 
+    public static MainScreen mainScreen;
+    public static PreviousBookingsScreen previousBookingsScreen;
     public static MovieSelectScreen movieSelectScreen;
     private static SeatsSelectScreen seatSelectScreen;
     private static BookingDetailsScreen bookingDetailsScreen;
+    public static boolean isMainPanelAuth = false;
 
     public static void Initialize()
     {
         window = new Window();
-        window.addScreen(new MainScreen());
+        window.addScreen(previousBookingsScreen = new PreviousBookingsScreen());
+        window.addScreen(mainScreen = new MainScreen());
         window.addScreen(movieSelectScreen = new MovieSelectScreen());
         for (Movie movie : BookingManager.Movies)
         {
@@ -84,6 +89,13 @@ public class GuiAppManager
     }
     public static void StartBooking()
     {
+        GuiAppManager.mainScreen.SwitchButtons();
+        if (isMainPanelAuth)
+        {
+            window.openScreen("Main");
+            isMainPanelAuth = false;
+            return;
+        }
         window.openScreen("Seat Select");
         seatSelectScreen.PopulateSeats(movie, cinemaHall, date, timeIndex);
     }
@@ -99,9 +111,30 @@ public class GuiAppManager
 
     public static void EndBooking()
     {
+        StringBuilder seats = new StringBuilder();
+        for (int i = 0; i < seatsToBook.size(); i++)
+        {
+            String seat = String.valueOf(seatsToBook.get(i));
+            if (seatsToBook.get(i) <= (cinemaHall.frontRows * cinemaHall.columns))
+                seat = "F" + seat;
+            else if (seatsToBook.get(i) <= ((cinemaHall.frontRowCost + cinemaHall.normalRows) * cinemaHall.columns))
+                seat = "N" + seat;
+            else seat = "P" + seat;
+            if (i == 0) seats.append(seat);
+            else seats.append(", ").append(seat);
+        }
         BookingManager.RegisterSeats(movie, cinemaHall, date, timeIndex, seatsToBook);
         for (MovieDetailsScreen detailsScreen : movieDetailsScreens) detailsScreen.Refresh();
         movieSelectScreen.PopulateMovies();
+        AccountsManager.AddBooking(movie.name, date.date, date.times[timeIndex], cinemaHall.name, seatsToBook);
+        bookingDetailsScreen.Setup(
+                movie.name + (movie.tagline.equals("") ? "" : ": " + movie.tagline),
+                "At " + cinemaHall.name + " in " + cinemaHall.roomPrefix + " " + new Random().nextInt(1, 6),
+                date.date,
+                date.times[timeIndex],
+                String.valueOf(seats),
+                movie.ticketPath
+        );
         window.openScreen("Booking Details");
     }
 }

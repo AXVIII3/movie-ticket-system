@@ -49,7 +49,6 @@ public class BookingManager
                 date.times[timeIndex].replace(":", "_") + ".txt");
         for (Integer seat : seats)
         {
-            System.out.println(seat.toString());
             try
             {
                 Files.writeString(path, seat.toString() + "\n", StandardOpenOption.APPEND);
