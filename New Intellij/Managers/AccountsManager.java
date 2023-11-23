@@ -61,6 +61,10 @@ public class AccountsManager
                     path,
                     name.trim() + "\n" + email.trim() + "\n" + Security.encrypt(password.trim()) + "\n\n",
                     StandardOpenOption.APPEND);
+            Initialize();
+            for (Account account : Accounts)
+                if (account.holderEmail.trim().equals(email.trim()) && account.holderPassword.trim().equals(password.trim()))
+                    currentAccount = account;
             GuiAppManager.StartBooking();
         }
         catch (Exception e)
