@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class BookingManager
 {
     public static Movie[] Movies;
+    public static final float CONVENIENCE_FEE_PERCENTAGE = 2f;
     public static final float CGST_PERCENTAGE = 2.5f;
     public static final float SGST_PERCENTAGE = 2.5f;
 

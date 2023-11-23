@@ -15,6 +15,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class AuthenticateDialog extends JDialog
@@ -154,9 +155,25 @@ public class AuthenticateDialog extends JDialog
                 {
                     nameTextField.setText("Enter your actual name here");
                 }
-                else if (passwordTextField.getText().trim().equals(confirmPasswordTextField.getText().trim()))
+                else if (Arrays.toString(passwordTextField.getPassword()).trim().isBlank() ||
+                        Arrays.toString(passwordTextField.getPassword()).trim().isEmpty())
                 {
-                    AccountsManager.Register(nameTextField.getText(), emailTextField.getText(), passwordTextField.getText());
+                    if (getSize().height != 430) setLocation(getLocation().x, getLocation().y - 7);
+                    setSize(400, 440);
+                    registerNotifyLabel.setText("Password field is blank");
+                }
+                else if (Arrays.toString(confirmPasswordTextField.getPassword()).trim().isBlank() ||
+                        Arrays.toString(confirmPasswordTextField.getPassword()).trim().isEmpty())
+                {
+                    if (getSize().height != 430) setLocation(getLocation().x, getLocation().y - 7);
+                    setSize(400, 440);
+                    registerNotifyLabel.setText("Confirm Password field is blank");
+                }
+                else if (Arrays.toString(passwordTextField.getPassword()).trim().equals(
+                        Arrays.toString(confirmPasswordTextField.getPassword()).trim()))
+                {
+                    AccountsManager.Register(nameTextField.getText(), emailTextField.getText(),
+                            Arrays.toString(passwordTextField.getPassword()));
                     isAuthenticated.set(true);
                     dispose();
                 }
