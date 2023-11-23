@@ -85,6 +85,8 @@ public class PreviousBookingsScreen extends Screen
             movieLabel.setIcon(new ImageIcon(booking.thumbnailPath));
             movieLabel.setVerticalTextPosition(Button.BOTTOM);
             movieLabel.setHorizontalTextPosition(Button.CENTER);
+            movieLabel.setHorizontalAlignment(Button.CENTER);
+            movieLabel.setVerticalAlignment(Button.CENTER);
             holder.add(movieLabel, new GridBagSettings(0, 0, 1, 1, GridBagSettings.BOTH,
                     new Insets(4, 4, 4, 4)));
             Label dataLabel = new Label(

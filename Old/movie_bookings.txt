@@ -1,9 +1,0 @@
-Movie: Interstellar, Time Slot: Evening (6:00 PM)
-Name: fjfm, Phone Number: 1234567890, Email: true
-Selected Seats: Seat 12, Seat 20, 
-Base Amount: 700 INR
-CGST: 63.0 INR
-SGST: 63.0 INR
-Total Amount (including taxes): 826.0 INR
-Ticket Number: 2270
-

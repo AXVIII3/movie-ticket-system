@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.target=DataManager
-comment1.params=
-comment1.target=void\ ResetData()
-comment2.params=filePath\ text\ shouldAppend
-comment2.target=void\ WriteToFile(java.lang.String,\ java.lang.String,\ boolean)
-comment3.params=filePath
-comment3.target=java.util.ArrayList\ ReadFile(java.lang.String)
-numComments=4

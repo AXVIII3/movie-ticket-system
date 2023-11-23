@@ -84,10 +84,8 @@ public class AccountsManager
         {
             if (!new File(path.toUri()).exists()) new File(path.toUri()).createNewFile();
             for (Integer seat : seats)
-            {
                 Files.writeString(path, seat.toString() + "\n", StandardOpenOption.APPEND);
 
-            }
             currentAccount.GetPreviousBookings();
         }
         catch (Exception e)

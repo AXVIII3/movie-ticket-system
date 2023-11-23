@@ -27,6 +27,12 @@ public class Account
             File folder = new File(DataManager.ACCOUNTS_DATA_PATH + holderEmail + "/");
             File[] listOfFiles = folder.listFiles();
 
+            if (listOfFiles == null || listOfFiles.length <= 0)
+            {
+                previousBookings = new Booking[0];
+                return;
+            }
+
             previousBookings = new Booking[listOfFiles.length];
             for (int i = 0; i < listOfFiles.length; i++)
             {

@@ -123,6 +123,7 @@ public class GuiAppManager
             if (i == 0) seats.append(seat);
             else seats.append(", ").append(seat);
         }
+
         BookingManager.RegisterSeats(movie, cinemaHall, date, timeIndex, seatsToBook);
         for (MovieDetailsScreen detailsScreen : movieDetailsScreens) detailsScreen.Refresh();
         movieSelectScreen.PopulateMovies();

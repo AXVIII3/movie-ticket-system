@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.target=Window
-comment1.params=
-comment1.target=Window()
-comment2.params=screen
-comment2.target=void\ addScreen(Screen)
-comment3.params=name
-comment3.target=void\ openScreen(java.lang.String)
-numComments=4

@@ -1,5 +1,0 @@
-#BlueJ class context
-comment0.target=Label
-comment1.params=text\ foreGround\ font
-comment1.target=Label(java.lang.String,\ java.awt.Color,\ java.awt.Font)
-numComments=2

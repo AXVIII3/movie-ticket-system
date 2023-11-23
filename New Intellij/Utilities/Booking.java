@@ -10,7 +10,7 @@ public class Booking
     public String date;
     public String time;
     public String venue;
-    public String seatsStr;
+    public String seatsStr = "";
     public String thumbnailPath;
     public ArrayList<Integer> seats = new ArrayList<>();
 
@@ -27,7 +27,13 @@ public class Booking
             if (i == 0) seatsStr += seatData[i];
             else seatsStr += ", " + seatData[i];
 
-            seats.add(Integer.parseInt(seatData[i].trim()));
+            int seat;
+            try
+            {
+                seat = Integer.parseInt(seatData[i].trim());
+            } catch(Exception e) { continue; }
+
+            seats.add(seat);
         }
         thumbnailPath = THUMBNAIL_PATH + movie + ".jpg";
     }
