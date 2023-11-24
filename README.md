@@ -3,7 +3,7 @@ This is a submission for my school project.
 In this program, I made a simple GUI application using JAVA GUI Libraries java.swing and java.awt
 It is a very primitive program which uses the JAVA filesystem and txt files as databases and uses basic logical statements for the actual logic.
 
-# Screenshots
+# Project Details
 ![image](https://github.com/AXVIII3/movie-ticket-system/assets/76608488/9fc7a5db-3eaf-47c2-94d1-aa155e700808)
 ![image](https://github.com/AXVIII3/movie-ticket-system/assets/76608488/63431abf-2df4-427b-8ebc-6e2cb51daf6f)
 ![image](https://github.com/AXVIII3/movie-ticket-system/assets/76608488/b2d11eca-a41d-4060-bb1b-46ebd117b888)
