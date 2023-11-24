@@ -1,6 +1,6 @@
-![image](https://github.com/AXVIII3/movie-ticket-system/assets/76608488/fbafd6e5-c5b8-4cc7-b130-fefb33853287)# Movie Ticket System
+# Movie Booking Software
 This is a submission for my school project.
-In this program, I made a simple GUI application using a JAVA GUI library called JSwing.
+In this program, I made a simple GUI application using JAVA GUI Libraries java.swing and java.awt
 It is a very primitive program which uses the JAVA filesystem and txt files as databases and uses basic logical statements for the actual logic.
 
 # Screenshots
