@@ -132,3 +132,18 @@ AUDI, Screen, Hall
 29th November, 30th November # 25th November, 26th November # 25th November, 26th November
 1:30pm, 7:00pm, 9:00pm # 7:00pm, 9:00pm ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
 320, 360, 400 # 320, 360, 400 # 320, 360, 400
+
+Napoleon
+The rise and fall of French Emperor Napoleon Bonaparte and his relentless journey to power
+Ridley Scott
+David Scarpa
+Joaquin Phoenix, Vanessa Kirby, Tahar Rahim
+Biographical Action Adventure
+6.8/10
+2023
+2h 38m
+Cinepolis # 3.4.2 # 16, INOX # 3.5.2 # 20, Navina # 2.5.3 # 15
+AUDI, Screen, Hall
+29th November, 30th November # 25th November, 26th November # 25th November, 26th November
+1:30pm, 7:00pm, 9:00pm # 7:00pm, 9:00pm ## 9:00am, 6:00pm # 6:00am ## 9:00am, 6:00pm # 6:00am
+320, 360, 400 # 320, 360, 400 # 320, 360, 400

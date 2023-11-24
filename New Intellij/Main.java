@@ -24,7 +24,7 @@ public class Main
 
     private static void Play()
     {
-        GuiAppManager.StartGUI();
-//        ConsoleAppManager.StartConsole();
+//        GuiAppManager.StartGUI();
+        ConsoleAppManager.StartConsole();
     }
 }
